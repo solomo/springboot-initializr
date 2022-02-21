@@ -31,6 +31,5 @@ public class CommonBuilderImpl extends BaseBuilder {
     file = new File(projectsRoot + config.getArtifactId() + "/src/main/java/" + packagePath, "ImageCode.java");
     // 写入文件
     super.writeFile(file, "common/image_code.ftl", info);
-    log.info("创建redis配置类 Common.java {}", file.getPath());
   }
 }
