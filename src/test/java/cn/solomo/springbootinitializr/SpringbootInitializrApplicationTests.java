@@ -52,7 +52,6 @@ class SpringbootInitializrApplicationTests {
     propertiesConfig.setDescription("test");
     pomBuilder.generation(propertiesConfig, projectsRoot + propertiesConfig.getArtifactId(), "pom.ftl");
 
-
     propertiesConfig.setPackageName(propertiesConfig.getGroupId() + "." + propertiesConfig.getArtifactId() + ".web");
     projectsRoot = projectsRoot + propertiesConfig.getArtifactId() + "/";
     propertiesConfig.setGroupId(propertiesConfig.getGroupId() + "." + propertiesConfig.getArtifactId());
