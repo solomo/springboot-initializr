@@ -20,7 +20,7 @@ import ${config.packageName}.controller.ValidateController;
 /**
  * @Author solom
  * @Description 
- * @version: v1.8.0
+ * @version: v1.0.0
  * @create ${.now?string["yyyy-MM-dd HH:mm:ss"]}
  * @since: jdk 1.8
  **/

@@ -2,6 +2,7 @@ package cn.solomo.springbootinitializr;
 
 import cn.solomo.springbootinitializr.builder.impl.ApplicationBuilderImpl;
 import cn.solomo.springbootinitializr.builder.impl.CacheBuilderImpl;
+import cn.solomo.springbootinitializr.builder.impl.CodeGeneratorBuilderImpl;
 import cn.solomo.springbootinitializr.builder.impl.CommonBuilderImpl;
 import cn.solomo.springbootinitializr.builder.impl.ConfigBuilderImpl;
 import cn.solomo.springbootinitializr.builder.impl.ControllerBuilderImpl;
@@ -38,6 +39,8 @@ class SpringbootInitializrApplicationTests {
   private ControllerBuilderImpl controllerBuilder;
   @Autowired
   private SqlBuilderImpl sqlBuilder;
+  @Autowired
+  private CodeGeneratorBuilderImpl codeGeneratorBuilder;
 
   @Test
   void contextLoads() throws Exception {
@@ -52,19 +55,39 @@ class SpringbootInitializrApplicationTests {
     propertiesConfig.setDescription("test");
     pomBuilder.generation(propertiesConfig, projectsRoot + propertiesConfig.getArtifactId(), "pom.ftl");
 
-    propertiesConfig.setPackageName(propertiesConfig.getGroupId() + "." + propertiesConfig.getArtifactId() + ".web");
+    PropertiesConfig webConfig = new PropertiesConfig();
+    webConfig.setDatasource(propertiesConfig.getDatasource());
+    webConfig.setRedis(propertiesConfig.getRedis());
+    webConfig.setPackageName(propertiesConfig.getGroupId() + "." + propertiesConfig.getArtifactId() + ".web");
     projectsRoot = projectsRoot + propertiesConfig.getArtifactId() + "/";
-    propertiesConfig.setGroupId(propertiesConfig.getGroupId() + "." + propertiesConfig.getArtifactId());
-    propertiesConfig.setArtifactId("web");
+    webConfig.setGroupId(propertiesConfig.getGroupId() + "." + propertiesConfig.getArtifactId());
+    webConfig.setArtifactId("web");
+    webConfig.setName("web");
+    webConfig.setDescription("web");
 
-    applicationBuilder.generation(propertiesConfig, projectsRoot + propertiesConfig.getArtifactId());
-    pomBuilder.generation(propertiesConfig, projectsRoot + propertiesConfig.getArtifactId(), "pom_web.ftl");
-    propertiesBuilder.generation(propertiesConfig, projectsRoot + propertiesConfig.getArtifactId());
-    logbackBuilder.generation(propertiesConfig, projectsRoot + propertiesConfig.getArtifactId());
-    commonBuilder.generation(propertiesConfig, projectsRoot + propertiesConfig.getArtifactId());
-    configBuilder.generation(propertiesConfig, projectsRoot + propertiesConfig.getArtifactId());
-    controllerBuilder.generation(propertiesConfig, projectsRoot + propertiesConfig.getArtifactId());
-    sqlBuilder.generation(propertiesConfig, projectsRoot + propertiesConfig.getArtifactId());
+    applicationBuilder.generation(webConfig, projectsRoot + webConfig.getArtifactId());
+    pomBuilder.generation(webConfig, projectsRoot + webConfig.getArtifactId(), "pom_web.ftl");
+    propertiesBuilder.generation(webConfig, projectsRoot + webConfig.getArtifactId());
+    logbackBuilder.generation(webConfig, projectsRoot + webConfig.getArtifactId());
+    commonBuilder.generation(webConfig, projectsRoot + webConfig.getArtifactId());
+    configBuilder.generation(webConfig, projectsRoot + webConfig.getArtifactId());
+    controllerBuilder.generation(webConfig, projectsRoot + webConfig.getArtifactId());
+    sqlBuilder.generation(webConfig, projectsRoot + webConfig.getArtifactId());
+
+    PropertiesConfig repositoryConfig = new PropertiesConfig();
+    repositoryConfig.setDatasource(propertiesConfig.getDatasource());
+    repositoryConfig.setRedis(propertiesConfig.getRedis());
+    repositoryConfig.setPackageName(propertiesConfig.getGroupId() + "." + propertiesConfig.getArtifactId() + ".repository");
+    projectsRoot = resource.getFile() + "/projects/";
+    projectsRoot = projectsRoot + propertiesConfig.getArtifactId() + "/";
+    repositoryConfig.setGroupId(propertiesConfig.getGroupId() + "." + propertiesConfig.getArtifactId());
+    repositoryConfig.setArtifactId("repository");
+    repositoryConfig.setName("repository");
+    repositoryConfig.setDescription("repository");
+
+    codeGeneratorBuilder.generation(repositoryConfig, projectsRoot + repositoryConfig.getArtifactId());
+    pomBuilder.generation(repositoryConfig, projectsRoot + repositoryConfig.getArtifactId(), "pom_repository.ftl");
+
   }
 
 }

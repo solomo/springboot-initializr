@@ -15,13 +15,13 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PropertiesConfig extends BaseConfig{
+public class PropertiesConfig extends BaseConfig implements Cloneable{
 
   @Data
   @AllArgsConstructor
   @NoArgsConstructor
   @Builder
-  public static class Datasource{
+  public static class Datasource implements Cloneable{
     private Mysql mysql;
   }
 
@@ -29,7 +29,7 @@ public class PropertiesConfig extends BaseConfig{
   @AllArgsConstructor
   @NoArgsConstructor
   @Builder
-  public static class Mysql{
+  public static class Mysql implements Cloneable{
     private String url;
     private String username;
     private String password;
@@ -41,7 +41,7 @@ public class PropertiesConfig extends BaseConfig{
   @AllArgsConstructor
   @NoArgsConstructor
   @Builder
-  public static class Redis{
+  public static class Redis implements Cloneable{
     private String host;
     private String password;
     private String port;
@@ -49,10 +49,7 @@ public class PropertiesConfig extends BaseConfig{
   }
 
   private Redis redis;
-
   private String applicationJavaName;
   private String name;
   private String description;
-
-
 }

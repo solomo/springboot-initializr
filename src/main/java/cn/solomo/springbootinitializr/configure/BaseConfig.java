@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class BaseConfig {
+public class BaseConfig implements Cloneable{
   private String groupId;
   private String artifactId;
   private String packageName;

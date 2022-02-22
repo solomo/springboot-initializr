@@ -4,6 +4,8 @@ import com.google.common.collect.Lists;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
+import org.springframework.context.annotation.ComponentScan;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.retry.annotation.EnableRetry;
@@ -21,6 +23,8 @@ import org.springframework.web.filter.CorsFilter;
 @EnableScheduling
 @EnableCaching
 @EnableRetry
+@MapperScan("${groupId}.repository.mapper")
+@ComponentScan(value = {"${groupId}.repository", "${groupId}.web"})
 public class WebApplication {
 
   public static void main(String[] args) {
