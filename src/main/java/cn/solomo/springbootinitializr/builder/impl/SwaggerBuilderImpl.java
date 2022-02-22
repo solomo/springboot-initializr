@@ -23,7 +23,7 @@ public class SwaggerBuilderImpl extends BaseBuilder {
     info.setPackageName(config.getPackageName()+".config");
     info.setConfig(config);
     String packagePath = config.getPackageName().replace(".", "/") + "/config/";
-    File file = new File(projectsRoot + config.getArtifactId() + "/src/main/java/" + packagePath, "OpenApiConfig.java");
+    File file = new File(projectsRoot + "/src/main/java/" + packagePath, "OpenApiConfig.java");
     // 写入文件
     super.writeFile(file, "swagger/open_api_config.ftl", info);
   }

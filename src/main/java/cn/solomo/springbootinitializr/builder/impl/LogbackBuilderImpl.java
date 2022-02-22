@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 public class LogbackBuilderImpl extends BaseBuilder {
 
   public void generation(PropertiesConfig config, String projectsRoot) throws Exception {
-    File file = new File(projectsRoot + config.getArtifactId() + "/src/main/resources/", "logback-spring.xml");
+    File file = new File(projectsRoot + "/src/main/resources/", "logback-spring.xml");
     // 写入文件
     super.writeFile(file, "logback-spring.ftl", config);
     log.info("创建配置文件 logback-spring.xml {}", file.getPath());

@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 public class PropertiesBuilderImpl extends BaseBuilder {
 
   public void generation(PropertiesConfig config, String projectsRoot) throws Exception {
-    File file = new File(projectsRoot + config.getArtifactId() + "/src/main/resources/", "application.properties");
+    File file = new File(projectsRoot + "/src/main/resources/", "application.properties");
     // 写入文件
     super.writeFile(file, "application.properties.ftl", config);
     log.info("创建配置文件 application.properties {}", file.getPath());

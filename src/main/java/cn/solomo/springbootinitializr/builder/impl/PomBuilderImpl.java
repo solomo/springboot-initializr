@@ -18,10 +18,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class PomBuilderImpl extends BaseBuilder {
 
-  public void generation(PropertiesConfig config, String projectsRoot) throws Exception {
-    File file = new File(projectsRoot + config.getArtifactId(), "pom.xml");
+  public void generation(PropertiesConfig config, String projectsRoot, String tmpFile) throws Exception {
+    File file = new File(projectsRoot, "pom.xml");
     // 写入文件
-    super.writeFile(file, "pom.ftl", config);
+    super.writeFile(file, tmpFile, config);
     log.info("创建配置文件 pom.xml {}", file.getPath());
   }
 }

@@ -24,10 +24,10 @@ public class RedisConfigBuilderImpl extends BaseBuilder {
     info.setConfig(config);
 
     String packagePath = config.getPackageName().replace(".", "/") + "/config/";
-    File file = new File(projectsRoot + config.getArtifactId() + "/src/main/java/" + packagePath, "RedisConfig.java");
+    File file = new File(projectsRoot + "/src/main/java/" + packagePath, "RedisConfig.java");
     // 写入文件
     super.writeFile(file, "redis/redis.ftl", info);
-    file = new File(projectsRoot + config.getArtifactId() + "/src/main/java/" + packagePath, "GsonRedisSerializer.java");
+    file = new File(projectsRoot + "/src/main/java/" + packagePath, "GsonRedisSerializer.java");
     super.writeFile(file, "redis/gson.ftl", info);
     log.info("创建redis配置类 RedisConfig.java {}", file.getPath());
   }

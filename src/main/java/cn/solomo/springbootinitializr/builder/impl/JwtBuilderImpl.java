@@ -23,14 +23,14 @@ public class JwtBuilderImpl extends BaseBuilder {
     info.setPackageName(config.getPackageName()+".config");
     info.setConfig(config);
     String packagePath = config.getPackageName().replace(".", "/") + "/config/";
-    File file = new File(projectsRoot + config.getArtifactId() + "/src/main/java/" + packagePath, "JwtAuthenticationTokenFilter.java");
+    File file = new File(projectsRoot + "/src/main/java/" + packagePath, "JwtAuthenticationTokenFilter.java");
     // 写入文件
     super.writeFile(file, "jwt/jwt_authentication_token_filter.ftl", info);
     //jwt_properties
-    file = new File(projectsRoot + config.getArtifactId() + "/src/main/java/" + packagePath, "JwtProperties.java");
+    file = new File(projectsRoot + "/src/main/java/" + packagePath, "JwtProperties.java");
     super.writeFile(file, "jwt/jwt_properties.ftl", info);
     //JwtProvider
-    file = new File(projectsRoot + config.getArtifactId() + "/src/main/java/" + packagePath, "JwtProvider.java");
+    file = new File(projectsRoot + "/src/main/java/" + packagePath, "JwtProvider.java");
     super.writeFile(file, "jwt/jwt_provider.ftl", info);
   }
 }

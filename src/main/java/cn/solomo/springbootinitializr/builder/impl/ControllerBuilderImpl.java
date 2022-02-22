@@ -24,11 +24,11 @@ public class ControllerBuilderImpl extends BaseBuilder {
     info.setConfig(config);
     String packagePath = config.getPackageName().replace(".", "/") + "/exception/";
     //validate_code_exception.ftl
-    File file = new File(projectsRoot + config.getArtifactId() + "/src/main/java/" + packagePath, "ValidateCodeException.java");
+    File file = new File(projectsRoot + "/src/main/java/" + packagePath, "ValidateCodeException.java");
     super.writeFile(file, "exception/validate_code_exception.ftl", info);
     info.setPackageName(config.getPackageName()+".controller");
     packagePath = config.getPackageName().replace(".", "/") + "/controller/";
-    file = new File(projectsRoot + config.getArtifactId() + "/src/main/java/" + packagePath, "ValidateController.java");
+    file = new File(projectsRoot + "/src/main/java/" + packagePath, "ValidateController.java");
     super.writeFile(file, "controller/validate_controller.ftl", info);
   }
 }

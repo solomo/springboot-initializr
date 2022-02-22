@@ -53,4 +53,6 @@ public class PropertiesConfig extends BaseConfig{
   private String applicationJavaName;
   private String name;
   private String description;
+
+
 }

@@ -9,6 +9,7 @@ import cn.solomo.springbootinitializr.builder.impl.LogbackBuilderImpl;
 import cn.solomo.springbootinitializr.builder.impl.PomBuilderImpl;
 import cn.solomo.springbootinitializr.builder.impl.PropertiesBuilderImpl;
 import cn.solomo.springbootinitializr.builder.impl.RedisConfigBuilderImpl;
+import cn.solomo.springbootinitializr.builder.impl.SqlBuilderImpl;
 import cn.solomo.springbootinitializr.configure.PropertiesConfig;
 import cn.solomo.springbootinitializr.configure.PropertiesConfig.Datasource;
 import cn.solomo.springbootinitializr.configure.PropertiesConfig.Mysql;
@@ -20,6 +21,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 class SpringbootInitializrApplicationTests {
+
   @Autowired
   private PropertiesBuilderImpl propertiesBuilder;
   @Autowired
@@ -34,6 +36,8 @@ class SpringbootInitializrApplicationTests {
   private ConfigBuilderImpl configBuilder;
   @Autowired
   private ControllerBuilderImpl controllerBuilder;
+  @Autowired
+  private SqlBuilderImpl sqlBuilder;
 
   @Test
   void contextLoads() throws Exception {
@@ -42,20 +46,26 @@ class SpringbootInitializrApplicationTests {
     PropertiesConfig propertiesConfig = new PropertiesConfig();
     propertiesConfig.setDatasource(Datasource.builder().mysql(Mysql.builder().url("a").username("b").password("c").build()).build());
     propertiesConfig.setRedis(Redis.builder().host("aa").password("bb").port("cc").database("1").build());
-    propertiesConfig.setArtifactId("web");
+    propertiesConfig.setArtifactId("demo");
     propertiesConfig.setGroupId("cn.mg");
     propertiesConfig.setName("abc");
     propertiesConfig.setDescription("test");
-    String lastPackageName = propertiesConfig.getArtifactId().replaceAll("-", "").toLowerCase();
-    propertiesConfig.setPackageName(propertiesConfig.getGroupId() + "." + lastPackageName);
+    pomBuilder.generation(propertiesConfig, projectsRoot + propertiesConfig.getArtifactId(), "pom.ftl");
 
-    propertiesBuilder.generation(propertiesConfig, projectsRoot);
-    logbackBuilder.generation(propertiesConfig, projectsRoot);
-    applicationBuilder.generation(propertiesConfig, projectsRoot);
-    pomBuilder.generation(propertiesConfig, projectsRoot);
-    commonBuilder.generation(propertiesConfig, projectsRoot);
-    configBuilder.generation(propertiesConfig, projectsRoot);
-    controllerBuilder.generation(propertiesConfig, projectsRoot);
+
+    propertiesConfig.setPackageName(propertiesConfig.getGroupId() + "." + propertiesConfig.getArtifactId() + ".web");
+    projectsRoot = projectsRoot + propertiesConfig.getArtifactId() + "/";
+    propertiesConfig.setGroupId(propertiesConfig.getGroupId() + "." + propertiesConfig.getArtifactId());
+    propertiesConfig.setArtifactId("web");
+
+    applicationBuilder.generation(propertiesConfig, projectsRoot + propertiesConfig.getArtifactId());
+    pomBuilder.generation(propertiesConfig, projectsRoot + propertiesConfig.getArtifactId(), "pom_web.ftl");
+    propertiesBuilder.generation(propertiesConfig, projectsRoot + propertiesConfig.getArtifactId());
+    logbackBuilder.generation(propertiesConfig, projectsRoot + propertiesConfig.getArtifactId());
+    commonBuilder.generation(propertiesConfig, projectsRoot + propertiesConfig.getArtifactId());
+    configBuilder.generation(propertiesConfig, projectsRoot + propertiesConfig.getArtifactId());
+    controllerBuilder.generation(propertiesConfig, projectsRoot + propertiesConfig.getArtifactId());
+    sqlBuilder.generation(propertiesConfig, projectsRoot + propertiesConfig.getArtifactId());
   }
 
 }

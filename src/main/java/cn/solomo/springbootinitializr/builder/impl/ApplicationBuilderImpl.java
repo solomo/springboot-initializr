@@ -28,7 +28,7 @@ public class ApplicationBuilderImpl extends BaseBuilder {
     applicationJavaName.append("Application");
     config.setApplicationJavaName(applicationJavaName.toString());
     String packagePath = config.getPackageName().replace(".", "/") + "/";
-    File file = new File(projectsRoot + config.getArtifactId() + "/src/main/java/" + packagePath, applicationJavaName + ".java");
+    File file = new File(projectsRoot + "/src/main/java/" + packagePath, applicationJavaName + ".java");
     // 写入文件
     super.writeFile(file, "application.ftl", config);
     log.info("创建主入口类 Application.java {}", file.getPath());
