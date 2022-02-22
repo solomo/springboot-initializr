@@ -45,9 +45,11 @@ class SpringbootInitializrApplicationTests {
   @Test
   void contextLoads() throws Exception {
     URL resource = this.getClass().getResource("/");
-    String projectsRoot = resource.getFile() + "/projects/";
+    String projectsRoot = resource.getFile() + "projects/";
     PropertiesConfig propertiesConfig = new PropertiesConfig();
-    propertiesConfig.setDatasource(Datasource.builder().mysql(Mysql.builder().url("a").username("b").password("c").build()).build());
+    propertiesConfig.setDatasource(Datasource.builder().mysql(Mysql.builder().url(
+            "jdbc:mysql://xxxx/demo?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&zeroDateTimeBehavior=convertToNull")
+        .username("root").password("root").build()).build());
     propertiesConfig.setRedis(Redis.builder().host("aa").password("bb").port("cc").database("1").build());
     propertiesConfig.setArtifactId("demo");
     propertiesConfig.setGroupId("cn.mg");
@@ -78,7 +80,7 @@ class SpringbootInitializrApplicationTests {
     repositoryConfig.setDatasource(propertiesConfig.getDatasource());
     repositoryConfig.setRedis(propertiesConfig.getRedis());
     repositoryConfig.setPackageName(propertiesConfig.getGroupId() + "." + propertiesConfig.getArtifactId() + ".repository");
-    projectsRoot = resource.getFile() + "/projects/";
+    projectsRoot = resource.getFile() + "projects/";
     projectsRoot = projectsRoot + propertiesConfig.getArtifactId() + "/";
     repositoryConfig.setGroupId(propertiesConfig.getGroupId() + "." + propertiesConfig.getArtifactId());
     repositoryConfig.setArtifactId("repository");
