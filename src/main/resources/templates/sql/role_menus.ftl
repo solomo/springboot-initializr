@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS `${artifactId}_role_menus`;
 CREATE TABLE `${artifactId}_role_menus`  (
   `id` int UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键，自增长',
   `rid` int UNSIGNED NOT NULL COMMENT '角色表id',

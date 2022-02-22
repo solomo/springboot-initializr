@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS `${artifactId}_role`;
 CREATE TABLE `${artifactId}_role`  (
   `id` int UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'role id',
   `role_name` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '角色名',

@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS `${artifactId}_menu`;
 CREATE TABLE `${artifactId}_menu`  (
   `id` int UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'menu id',
   `menu_name` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '菜单名称',

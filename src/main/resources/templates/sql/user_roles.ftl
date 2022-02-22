@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS `${artifactId}_user_roles`;
 CREATE TABLE `${artifactId}_user_roles`  (
   `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
   `user_id` int UNSIGNED NULL DEFAULT NULL COMMENT '用户表id',

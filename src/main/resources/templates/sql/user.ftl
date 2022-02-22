@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS `${artifactId}_user`;
 CREATE TABLE `${artifactId}_user` (
   `id` int NOT NULL AUTO_INCREMENT COMMENT '主键id',
   `login_name` varchar(128) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '登录账号',
