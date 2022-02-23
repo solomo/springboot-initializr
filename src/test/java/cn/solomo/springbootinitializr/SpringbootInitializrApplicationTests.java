@@ -15,7 +15,12 @@ import cn.solomo.springbootinitializr.configure.PropertiesConfig;
 import cn.solomo.springbootinitializr.configure.PropertiesConfig.Datasource;
 import cn.solomo.springbootinitializr.configure.PropertiesConfig.Mysql;
 import cn.solomo.springbootinitializr.configure.PropertiesConfig.Redis;
+import java.io.File;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -57,10 +62,30 @@ class SpringbootInitializrApplicationTests {
     propertiesConfig.setDescription("test");
     pomBuilder.generation(propertiesConfig, projectsRoot + propertiesConfig.getArtifactId(), "pom.ftl");
 
+    PropertiesConfig repositoryConfig = new PropertiesConfig();
+    repositoryConfig.setDatasource(propertiesConfig.getDatasource());
+    repositoryConfig.setRedis(propertiesConfig.getRedis());
+    repositoryConfig.setPackageName(propertiesConfig.getGroupId() + "." + propertiesConfig.getArtifactId() + ".repository");
+    projectsRoot = resource.getFile() + "projects/";
+    projectsRoot = projectsRoot + propertiesConfig.getArtifactId() + "/";
+    repositoryConfig.setGroupId(propertiesConfig.getGroupId() + "." + propertiesConfig.getArtifactId());
+    repositoryConfig.setArtifactId("repository");
+    repositoryConfig.setName("repository");
+    repositoryConfig.setDescription("repository");
+    pomBuilder.generation(repositoryConfig, projectsRoot + repositoryConfig.getArtifactId(), "pom_repository.ftl");
+    sqlBuilder.generation(propertiesConfig, projectsRoot + repositoryConfig.getArtifactId());
+    File f = new File(projectsRoot + repositoryConfig.getArtifactId() + "/src/main/resources/entity.java.ftl");
+    Path copied = f.toPath();
+    Path originalPath = Paths.get("src/main/resources/templates/swagger/entity.java.ftl");
+    Files.copy(originalPath, copied, StandardCopyOption.REPLACE_EXISTING);
+
+    codeGeneratorBuilder.generation(repositoryConfig, projectsRoot + repositoryConfig.getArtifactId());
+
     PropertiesConfig webConfig = new PropertiesConfig();
     webConfig.setDatasource(propertiesConfig.getDatasource());
     webConfig.setRedis(propertiesConfig.getRedis());
     webConfig.setPackageName(propertiesConfig.getGroupId() + "." + propertiesConfig.getArtifactId() + ".web");
+    projectsRoot = resource.getFile() + "projects/";
     projectsRoot = projectsRoot + propertiesConfig.getArtifactId() + "/";
     webConfig.setGroupId(propertiesConfig.getGroupId() + "." + propertiesConfig.getArtifactId());
     webConfig.setArtifactId("web");
@@ -74,22 +99,6 @@ class SpringbootInitializrApplicationTests {
     commonBuilder.generation(webConfig, projectsRoot + webConfig.getArtifactId());
     configBuilder.generation(webConfig, projectsRoot + webConfig.getArtifactId());
     controllerBuilder.generation(webConfig, projectsRoot + webConfig.getArtifactId());
-    sqlBuilder.generation(webConfig, projectsRoot + webConfig.getArtifactId());
-
-    PropertiesConfig repositoryConfig = new PropertiesConfig();
-    repositoryConfig.setDatasource(propertiesConfig.getDatasource());
-    repositoryConfig.setRedis(propertiesConfig.getRedis());
-    repositoryConfig.setPackageName(propertiesConfig.getGroupId() + "." + propertiesConfig.getArtifactId() + ".repository");
-    projectsRoot = resource.getFile() + "projects/";
-    projectsRoot = projectsRoot + propertiesConfig.getArtifactId() + "/";
-    repositoryConfig.setGroupId(propertiesConfig.getGroupId() + "." + propertiesConfig.getArtifactId());
-    repositoryConfig.setArtifactId("repository");
-    repositoryConfig.setName("repository");
-    repositoryConfig.setDescription("repository");
-
-    codeGeneratorBuilder.generation(repositoryConfig, projectsRoot + repositoryConfig.getArtifactId());
-    pomBuilder.generation(repositoryConfig, projectsRoot + repositoryConfig.getArtifactId(), "pom_repository.ftl");
-
   }
 
 }

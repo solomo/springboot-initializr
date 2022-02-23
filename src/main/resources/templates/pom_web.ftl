@@ -108,11 +108,6 @@
       <artifactId>lombok</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.springdoc</groupId>
-      <artifactId>springdoc-openapi-ui</artifactId>
-      <version>1.6.6</version>
-    </dependency>
-    <dependency>
       <groupId>${groupId}</groupId>
       <artifactId>repository</artifactId>
       <version>1.0.0</version>
@@ -127,6 +122,7 @@
         <configuration>
           <!-- 工程主入口-->
           <mainClass>${groupId}.${artifactId}.${applicationJavaName}</mainClass>
+          <jvmArguments>-Dfile.encoding=UTF-8</jvmArguments>
         </configuration>
         <executions>
           <execution>

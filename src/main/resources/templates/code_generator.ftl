@@ -72,7 +72,7 @@ public class CodeGenerator {
     // 包配置
     PackageConfig pc = new PackageConfig();
     pc.setModuleName("");
-    pc.setParent("cn.weiqi.models");
+    pc.setParent("${packageName}");
     mpg.setPackageInfo(pc);
 
     // 自定义配置
@@ -102,16 +102,17 @@ public class CodeGenerator {
     // 配置模板
     TemplateConfig templateConfig = new TemplateConfig();
     templateConfig.setXml(null);
+    templateConfig.setEntity("entity.java");
     mpg.setTemplate(templateConfig);
 
     // 策略配置
     StrategyConfig strategy = new StrategyConfig();
     strategy.setNaming(NamingStrategy.underline_to_camel);
     strategy.setColumnNaming(NamingStrategy.underline_to_camel);
-    strategy.setSuperEntityClass("cn.weiqi.models.entity.convert.Convert");
+    strategy.setSuperEntityClass("${packageName}.entity.convert.Convert");
     strategy.setEntityLombokModel(true);
     strategy.setRestControllerStyle(false);
-    strategy.setInclude(scanner("表名，多个英文逗号分割").split(","));
+    //strategy.setInclude(scanner("表名，多个英文逗号分割").split(","));
     strategy.setControllerMappingHyphenStyle(true);
     strategy.setTablePrefix(pc.getModuleName() + "_");
     mpg.setStrategy(strategy);
