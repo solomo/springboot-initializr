@@ -67,7 +67,9 @@ public class CodeGeneratorBuilderImpl extends BaseBuilder {
     packagePath = config.getPackageName().replace(".", "/") + "/modelmapper/jsr310/";
     file = new File(projectsRoot + "/src/main/java/" + packagePath, "ToTemporalConverter.java");
     super.writeFile(file, "code/modelmapper/jsr310/to_temporal_converter.ftl", config);
-    // TODO generate codeGenerator
-
+    // TODO check os' version
+    String command = "cmd /c mvn spring-boot:run";
+    Process p = Runtime.getRuntime().exec(command, null , new File(projectsRoot));
+    log.info("command:{}, {}", command, p);
   }
 }

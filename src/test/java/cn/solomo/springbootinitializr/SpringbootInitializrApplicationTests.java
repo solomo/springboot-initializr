@@ -53,8 +53,8 @@ class SpringbootInitializrApplicationTests {
     String projectsRoot = resource.getFile() + "projects/";
     PropertiesConfig propertiesConfig = new PropertiesConfig();
     propertiesConfig.setDatasource(Datasource.builder().mysql(Mysql.builder().url(
-            "jdbc:mysql://xxxx/demo?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&zeroDateTimeBehavior=convertToNull")
-        .username("root").password("root").build()).build());
+            "jdbc:mysql://xxx:3306/demo?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&zeroDateTimeBehavior=convertToNull")
+        .username("root").password("admin**").build()).build());
     propertiesConfig.setRedis(Redis.builder().host("aa").password("bb").port("cc").database("1").build());
     propertiesConfig.setArtifactId("demo");
     propertiesConfig.setGroupId("cn.mg");
