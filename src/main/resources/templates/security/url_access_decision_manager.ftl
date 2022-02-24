@@ -12,8 +12,13 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
 
 /**
- * Created by sang on 2017/12/28.
- */
+* @author solom
+* @ClassName UrlAccessDecisionManager
+* @Description
+* @Version 1.0.0
+* @create ${.now?string["yyyy-MM-dd HH:mm:ss"]}
+* @since: jdk 1.8
+*/
 @Component
 public class UrlAccessDecisionManager implements AccessDecisionManager {
 

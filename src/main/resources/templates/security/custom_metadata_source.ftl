@@ -20,8 +20,13 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.AntPathMatcher;
 
 /**
- * Created by sang on 2017/12/28.
- */
+* @author solom
+* @ClassName CustomMetadataSource
+* @Description
+* @Version 1.0.0
+* @create ${.now?string["yyyy-MM-dd HH:mm:ss"]}
+* @since: jdk 1.8
+*/
 @Component
 public class CustomMetadataSource implements FilterInvocationSecurityMetadataSource {
 
