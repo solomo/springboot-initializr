@@ -12,4 +12,6 @@ public class ApplicationInfo {
   private PropertiesConfig config;
   private String packageName;
   private String className;
+	private String groupId;
+	private String artifactId;
 }

@@ -2,7 +2,9 @@ package cn.solomo.springbootinitializr.builder.impl;
 
 import cn.solomo.springbootinitializr.builder.BaseBuilder;
 import cn.solomo.springbootinitializr.builder.model.ApplicationInfo;
+import cn.solomo.springbootinitializr.builder.model.CustomMetadataInfo;
 import cn.solomo.springbootinitializr.configure.PropertiesConfig;
+import com.google.common.base.CaseFormat;
 import java.io.File;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -30,7 +32,19 @@ public class SecurityBuilderImpl extends BaseBuilder {
     super.writeFile(file, "security/access_token.ftl", info);
     //custom_metadata_source.ftl
     file = new File(projectsRoot + "/src/main/java/" + packagePath, "CustomMetadataSource.java");
-    super.writeFile(file, "security/custom_metadata_source.ftl", info);
+		CustomMetadataInfo customMetaInfo = new CustomMetadataInfo();
+		customMetaInfo.setPackageName(config.getPackageName()+".security");
+		customMetaInfo.setConfig(config.getConfig());
+		customMetaInfo.setMenuEntity(CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, config.getConfig().getArtifactId()+"_menu"));
+		customMetaInfo.setRoleEntity(CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, config.getConfig().getArtifactId()+"_role"));
+		customMetaInfo.setRoleMenusEntity(CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, config.getConfig().getArtifactId()+"_role_menus"));
+		customMetaInfo.setUserRolesEntity(CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, config.getConfig().getArtifactId()+"_user_roles"));
+		customMetaInfo.setMenuService(CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, "i_"+config.getConfig().getArtifactId()+"_menu_service"));
+		customMetaInfo.setRoleMenusService(CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, "i_"+config.getConfig().getArtifactId()+"_role_menus_service"));
+		customMetaInfo.setUserRolesService(CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, "i_"+config.getConfig().getArtifactId()+"_user_roles_service"));
+		customMetaInfo.setRoleService(CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, "i_"+config.getConfig().getArtifactId()+"_role_service"));
+		customMetaInfo.setUserRolesService(CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, "i_"+config.getConfig().getArtifactId()+"_user_roles_service"));
+		super.writeFile(file, "security/custom_metadata_source.ftl", customMetaInfo);
     //my_authentication_failure_handler.ftl
     file = new File(projectsRoot + "/src/main/java/" + packagePath, "MyAuthenticationFailureHandler.java");
     super.writeFile(file, "security/my_authentication_failure_handler.ftl", info);

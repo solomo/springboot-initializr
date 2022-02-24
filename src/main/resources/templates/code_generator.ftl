@@ -103,6 +103,7 @@ public class CodeGenerator {
     TemplateConfig templateConfig = new TemplateConfig();
     templateConfig.setXml(null);
     templateConfig.setEntity("entity.java");
+    templateConfig.setController(""); //不生成controller
     mpg.setTemplate(templateConfig);
 
     // 策略配置

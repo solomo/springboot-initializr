@@ -1,44 +1,54 @@
 package ${packageName};
 
+import ${config.packageName}.repository.entity.${menuEntity};
+import ${config.packageName}.repository.entity.${roleEntity};
+import ${config.packageName}.repository.entity.${roleMenusEntity};
+import ${config.packageName}.repository.entity.${userRolesEntity};
+import ${config.packageName}.repository.service.${menuService};
+import ${config.packageName}.repository.service.${roleMenusService};
+import ${config.packageName}.repository.service.${roleService};
+import ${config.packageName}.repository.service.${userRolesService};
 import java.util.Collection;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.access.SecurityConfig;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.FilterInvocation;
 import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
 import org.springframework.stereotype.Component;
 import org.springframework.util.AntPathMatcher;
 
 /**
- * @Author solom
- * @Description 
- * @version: v1.0.0
- * @create ${.now?string["yyyy-MM-dd HH:mm:ss"]}
- * @since: jdk 1.8
- **/
+ * Created by sang on 2017/12/28.
+ */
 @Component
 public class CustomMetadataSource implements FilterInvocationSecurityMetadataSource {
 
-  //@Autowired
-  //IMenuService menuService;
+  @Autowired
+  private ${menuService} menuService;
+  @Autowired
+  private ${userRolesService} userRolesService;
+  @Autowired
+  private ${roleService} roleService;
+  @Autowired
+  private ${roleMenusService} roleMenusService;
+
   AntPathMatcher antPathMatcher = new AntPathMatcher();
 
   @Override
   public Collection<ConfigAttribute> getAttributes(Object o) {
-    //String requestUrl = ((FilterInvocation) o).getRequestUrl();
-    //List<Menu> allMenu = menuService.getAllMenu();
-    //for (Menu menu : allMenu) {
-    //  if (antPathMatcher.match(menu.getUrl(), requestUrl) && menu.getRoles().size() > 0) {
-    //    List<Role> roles = menu.getRoles();
-    //    int size = roles.size();
-    //    String[] values = new String[size];
-    //    for (int i = 0; i < size; i++) {
-    //      values[i] = roles.get(i).getRoleName();
-    //    }
-    //    return SecurityConfig.createList(values);
-    //  }
-    //}
+    String requestUrl = ((FilterInvocation) o).getRequestUrl();
+    UserEntity userEntity = (UserEntity) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    ${userRolesEntity} userRoles = userRolesService.lambdaQuery().eq(${userRolesEntity}::getUserId, userEntity.getId()).one();
+    ${roleEntity} role = roleService.getById(userRoles.getRoleId());
+    List<${roleMenusEntity}> menus = roleMenusService.lambdaQuery().eq(${roleMenusEntity}::getRid, userRoles.getRoleId()).list();
+    for (${roleMenusEntity} roleMenus : menus) {
+      ${menuEntity} menu = menuService.getById(roleMenus.getMid());
+      if (antPathMatcher.match(menu.getUrl(), requestUrl)) {
+        return SecurityConfig.createList(role.getRoleName());
+      }
+    }
     //没有匹配上的资源，都是登录访问
     return SecurityConfig.createList("ROLE_LOGIN");
   }

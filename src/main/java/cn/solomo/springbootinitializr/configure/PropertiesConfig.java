@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PropertiesConfig extends BaseConfig implements Cloneable{
+public class PropertiesConfig implements Cloneable{
 
   @Data
   @AllArgsConstructor
@@ -52,4 +52,8 @@ public class PropertiesConfig extends BaseConfig implements Cloneable{
   private String applicationJavaName;
   private String name;
   private String description;
+	private String groupId;
+	private String artifactId;
+	private String packageName;
+	private PropertiesConfig config;
 }
