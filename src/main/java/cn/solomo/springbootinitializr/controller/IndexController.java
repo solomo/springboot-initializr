@@ -1,6 +1,8 @@
 package cn.solomo.springbootinitializr.controller;
 
 import cn.hutool.core.util.ZipUtil;
+import cn.hutool.json.JSON;
+import cn.hutool.json.JSONException;
 import cn.solomo.springbootinitializr.builder.RepositoryBuilder;
 import cn.solomo.springbootinitializr.builder.WebBuilder;
 import cn.solomo.springbootinitializr.builder.impl.PomBuilderImpl;
@@ -13,6 +15,7 @@ import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.OutputStream;
+import java.io.Writer;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
@@ -40,7 +43,6 @@ public class IndexController {
 	@ResponseBody
 	public String execute(HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {
 		String projectsRoot = request.getSession().getServletContext().getRealPath("/");
-		System.err.println(projectsRoot);
 		PropertiesConfig propertiesConfig = new PropertiesConfig();
 		propertiesConfig.setGroupId(request.getParameter("groupId"));
 		propertiesConfig.setArtifactId(request.getParameter("artifactId"));
@@ -71,6 +73,6 @@ public class IndexController {
 		WebBuilder webBuilder = SpringContextUtil.getBean(WebBuilder.class);
 		webBuilder.generation(propertiesConfig, projectsRoot);
 		ZipUtil.zip(projectsRoot + propertiesConfig.getArtifactId());
-		return "{\"ok\"}";
+		return "hello";
 	}
 }
