@@ -49,7 +49,6 @@ public class WebBuilder extends BaseBuilder{
 		webConfig.setRedis(config.getRedis());
 		webConfig.setGroupId(config.getGroupId() + "." + config.getArtifactId());
 		webConfig.setArtifactId("web");
-		webConfig.setName("web");
 		webConfig.setDescription("web");
 		webConfig.setPackageName(webConfig.getGroupId() + "." + webConfig.getArtifactId());
 		

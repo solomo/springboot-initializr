@@ -50,7 +50,6 @@ public class PropertiesConfig implements Cloneable{
 
   private Redis redis;
   private String applicationJavaName;
-  private String name;
   private String description;
 	private String groupId;
 	private String artifactId;

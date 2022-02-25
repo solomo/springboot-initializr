@@ -48,7 +48,6 @@ class SpringbootInitializrApplicationTests {
     propertiesConfig.setRedis(Redis.builder().host("aa").password("bb").port("cc").database("1").build());
     propertiesConfig.setArtifactId("demo");
     propertiesConfig.setGroupId("cn.mg");
-    propertiesConfig.setName("abc");
     propertiesConfig.setDescription("test");
 		propertiesConfig.setPackageName(propertiesConfig.getGroupId() + "." + propertiesConfig.getArtifactId());
 		pomBuilder.generation(propertiesConfig, projectsRoot + propertiesConfig.getArtifactId(), "pom.ftl");

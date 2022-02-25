@@ -38,7 +38,6 @@ public class RepositoryBuilder extends BaseBuilder{
 		projectsRoot = projectsRoot + config.getArtifactId() + "/";
 		repositoryConfig.setGroupId(config.getGroupId() + "." + config.getArtifactId());
 		repositoryConfig.setArtifactId("repository");
-		repositoryConfig.setName("repository");
 		repositoryConfig.setDescription("repository");
 		repositoryConfig.setConfig(config);
 		pomBuilder.generation(repositoryConfig, projectsRoot + repositoryConfig.getArtifactId(), "pom_repository.ftl");
