@@ -7,26 +7,20 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 
+@Service
 public class BaseBuilder {
 
   private static String ENCODING = "UTF-8";
-
-  private static Configuration cfg;
-
-  static {
-    try {
-      cfg = new Configuration(Configuration.VERSION_2_3_31);
-      File file = new File(System.getProperty("user.dir") + "/src/main/resources/templates");
-      cfg.setDirectoryForTemplateLoading(file);
-      cfg.setDefaultEncoding("UTF-8");
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-  }
+	
+	@Autowired
+	FreeMarkerConfigurer freeMarkerConfigurer;
 
   protected Template getTemplate(String ftl) throws IOException {
-    return cfg.getTemplate(ftl, ENCODING);
+		return freeMarkerConfigurer.getConfiguration().getTemplate(ftl);
   }
 
   protected void writeFile(File file, String ftl, Object dataModel) throws IOException, TemplateException {

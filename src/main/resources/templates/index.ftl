@@ -32,49 +32,49 @@
       <div class="layui-form-item">
         <label class="layui-form-label">Group</label>
         <div class="layui-input-block">
-          <input type="text" name="groupId" id="f_group_id" autocomplete="off" class="layui-input" placeholder="com.example">
+          <input type="text" name="groupId" id="f_group_id" autocomplete="off" class="layui-input" value="com.example">
         </div>
       </div>
       <div class="layui-form-item">
         <label class="layui-form-label">Artifact</label>
         <div class="layui-input-block">
-          <input type="text" name="artifact" id="f_artifact" autocomplete="off" class="layui-input" placeholder="demo">
+          <input type="text" name="artifact" id="f_artifact" autocomplete="off" class="layui-input" value="demo">
         </div>
       </div>
       <div class="layui-form-item">
         <label class="layui-form-label">Description</label>
         <div class="layui-input-block">
-          <input type="text" name="description" id="f_description" autocomplete="off" class="layui-input" placeholder="description">
+          <input type="text" name="description" id="f_description" autocomplete="off" class="layui-input" value="description">
         </div>
       </div>
       <div class="layui-form-item">
         <label class="layui-form-label">Mysql url</label>
         <div class="layui-input-block">
-          <input type="text" name="mysql_url" id="f_mysql_url" autocomplete="off" class="layui-input" placeholder="127.0.0.1">
+          <input type="text" name="mysql_url" id="f_mysql_url" autocomplete="off" class="layui-input" value="127.0.0.1">
         </div>
       </div>
       <div class="layui-form-item">
         <label class="layui-form-label">Mysql port</label>
         <div class="layui-input-block">
-          <input type="text" name="mysql_port" id="f_mysql_port" autocomplete="off" class="layui-input" placeholder="3306">
+          <input type="text" name="mysql_port" id="f_mysql_port" autocomplete="off" class="layui-input" value="3306">
         </div>
       </div>
       <div class="layui-form-item">
         <label class="layui-form-label">Mysql database</label>
         <div class="layui-input-block">
-          <input type="text" name="mysql_database" id="f_mysql_database" autocomplete="off" class="layui-input" placeholder="database">
+          <input type="text" name="mysql_database" id="f_mysql_database" autocomplete="off" class="layui-input" value="database">
         </div>
       </div>
       <div class="layui-form-item">
         <label class="layui-form-label">Mysql username</label>
         <div class="layui-input-block">
-          <input type="text" name="mysql_username" id="f_mysql_username" autocomplete="off" class="layui-input" placeholder="username">
+          <input type="text" name="mysql_username" id="f_mysql_username" autocomplete="off" class="layui-input" value="username">
         </div>
       </div>
       <div class="layui-form-item">
         <label class="layui-form-label">Mysql password</label>
         <div class="layui-input-block">
-          <input type="text" name="mysql_password" id="f_mysql_password" autocomplete="off" class="layui-input" placeholder="password">
+          <input type="text" name="mysql_password" id="f_mysql_password" autocomplete="off" class="layui-input" value="password">
         </div>
       </div>
       <div class="layui-form-item">
@@ -86,28 +86,28 @@
       <div class="layui-form-item">
         <label class="layui-form-label">Redis host</label>
         <div class="layui-input-block">
-          <input type="text" name="redis_host" id="f_redis_host" autocomplete="off" class="layui-input" placeholder="127.0.0.1">
+          <input type="text" name="redis_host" id="f_redis_host" autocomplete="off" class="layui-input" value="127.0.0.1">
         </div>
       </div>
       <div class="layui-form-item">
         <label class="layui-form-label">Redis port</label>
         <div class="layui-input-block">
-          <input type="text" name="redis_port" id="f_redis_port" autocomplete="off" class="layui-input" placeholder="6379">
+          <input type="text" name="redis_port" id="f_redis_port" autocomplete="off" class="layui-input" value="6379">
         </div>
       </div>
       <div class="layui-form-item">
         <label class="layui-form-label">Redis password</label>
         <div class="layui-input-block">
-          <input type="text" name="redis_password" id="f_redis_password" autocomplete="off" class="layui-input" placeholder="">
+          <input type="text" name="redis_password" id="f_redis_password" autocomplete="off" class="layui-input" value="">
         </div>
       </div>
       <div class="layui-form-item">
         <label class="layui-form-label">Redis database</label>
         <div class="layui-input-block">
-          <input type="text" name="redis_database" id="f_redis_database" autocomplete="off" class="layui-input" placeholder="1">
+          <input type="text" name="redis_database" id="f_redis_database" autocomplete="off" class="layui-input" value="1">
         </div>
       </div>
-      <div class="layui-form-item">
+      <div class="layui-form-item" style="margin-top: 40px;margin-left: 150px;">
         <div class="layui-input-block">
           <button class="layui-btn" lay-submit lay-filter="*">确定</button>
           <button type="reset" class="layui-btn layui-btn-primary">重置</button>
