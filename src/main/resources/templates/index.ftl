@@ -99,8 +99,10 @@
       offset: 'auto',
       time: 100000
     });
-  }
-
+  };
+  function hideLoading(index) {
+    layui.layer.close(index);
+  };
   layui.use(['form', 'layer'], function () {
     var form = layui.form;
     form.on('submit(*)', function(){
@@ -126,7 +128,7 @@
         data: data,
         success: function(data) {
           hideLoading(i);
-          window.open($('#f_artifact').val()+"zip");
+          window.open($('#f_artifact').val()+".zip");
         },
         error: function () {
         }
