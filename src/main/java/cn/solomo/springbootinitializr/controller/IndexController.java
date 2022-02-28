@@ -3,6 +3,7 @@ package cn.solomo.springbootinitializr.controller;
 import cn.hutool.core.util.ZipUtil;
 import cn.hutool.json.JSON;
 import cn.hutool.json.JSONException;
+import cn.hutool.json.JSONObject;
 import cn.solomo.springbootinitializr.builder.RepositoryBuilder;
 import cn.solomo.springbootinitializr.builder.WebBuilder;
 import cn.solomo.springbootinitializr.builder.impl.PomBuilderImpl;
@@ -41,7 +42,7 @@ public class IndexController {
 	
 	@RequestMapping("execute.html")
 	@ResponseBody
-	public String execute(HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {
+	public JSONObject execute(HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {
 		String projectsRoot = request.getSession().getServletContext().getRealPath("/");
 		PropertiesConfig propertiesConfig = new PropertiesConfig();
 		propertiesConfig.setGroupId(request.getParameter("groupId"));
@@ -73,6 +74,8 @@ public class IndexController {
 		WebBuilder webBuilder = SpringContextUtil.getBean(WebBuilder.class);
 		webBuilder.generation(propertiesConfig, projectsRoot);
 		ZipUtil.zip(projectsRoot + propertiesConfig.getArtifactId());
-		return "hello";
+		JSONObject rtn = new JSONObject();
+		rtn.putOpt("code", "ok");
+		return rtn;
 	}
 }
