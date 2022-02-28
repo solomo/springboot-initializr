@@ -55,4 +55,5 @@ public class PropertiesConfig implements Cloneable{
 	private String artifactId;
 	private String packageName;
 	private PropertiesConfig config;
+	private boolean autoExecuteSQL;
 }

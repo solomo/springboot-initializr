@@ -32,10 +32,12 @@ public class SqlBuilderImpl extends BaseBuilder {
     super.writeFile(file, "sql/menu.ftl", config);
     file = new File(projectsRoot + "/src/main/resources/sql/", "role_menus.sql");// 写入文件
     super.writeFile(file, "sql/role_menus.ftl", config);
-    executeSQLService.executeSqlByFile(config.getDatasource().getMysql().getUrl(), config.getDatasource().getMysql().getUsername(), config.getDatasource().getMysql().getPassword(), projectsRoot + "/src/main/resources/sql/user.sql");
-    executeSQLService.executeSqlByFile(config.getDatasource().getMysql().getUrl(), config.getDatasource().getMysql().getUsername(), config.getDatasource().getMysql().getPassword(), projectsRoot + "/src/main/resources/sql/role.sql");
-    executeSQLService.executeSqlByFile(config.getDatasource().getMysql().getUrl(), config.getDatasource().getMysql().getUsername(), config.getDatasource().getMysql().getPassword(), projectsRoot + "/src/main/resources/sql/user_roles.sql");
-    executeSQLService.executeSqlByFile(config.getDatasource().getMysql().getUrl(), config.getDatasource().getMysql().getUsername(), config.getDatasource().getMysql().getPassword(), projectsRoot + "/src/main/resources/sql/menu.sql");
-    executeSQLService.executeSqlByFile(config.getDatasource().getMysql().getUrl(), config.getDatasource().getMysql().getUsername(), config.getDatasource().getMysql().getPassword(), projectsRoot + "/src/main/resources/sql/role_menus.sql");
+		if(config.isAutoExecuteSQL()) {
+			executeSQLService.executeSqlByFile(config.getDatasource().getMysql().getUrl(), config.getDatasource().getMysql().getUsername(), config.getDatasource().getMysql().getPassword(), projectsRoot + "/src/main/resources/sql/user.sql");
+			executeSQLService.executeSqlByFile(config.getDatasource().getMysql().getUrl(), config.getDatasource().getMysql().getUsername(), config.getDatasource().getMysql().getPassword(), projectsRoot + "/src/main/resources/sql/role.sql");
+			executeSQLService.executeSqlByFile(config.getDatasource().getMysql().getUrl(), config.getDatasource().getMysql().getUsername(), config.getDatasource().getMysql().getPassword(), projectsRoot + "/src/main/resources/sql/user_roles.sql");
+			executeSQLService.executeSqlByFile(config.getDatasource().getMysql().getUrl(), config.getDatasource().getMysql().getUsername(), config.getDatasource().getMysql().getPassword(), projectsRoot + "/src/main/resources/sql/menu.sql");
+			executeSQLService.executeSqlByFile(config.getDatasource().getMysql().getUrl(), config.getDatasource().getMysql().getUsername(), config.getDatasource().getMysql().getPassword(), projectsRoot + "/src/main/resources/sql/role_menus.sql");
+		}
   }
 }

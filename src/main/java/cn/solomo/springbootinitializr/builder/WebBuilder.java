@@ -50,6 +50,7 @@ public class WebBuilder extends BaseBuilder{
 		webConfig.setGroupId(config.getGroupId() + "." + config.getArtifactId());
 		webConfig.setArtifactId("web");
 		webConfig.setDescription("web");
+		webConfig.setAutoExecuteSQL(config.isAutoExecuteSQL());
 		webConfig.setPackageName(webConfig.getGroupId() + "." + webConfig.getArtifactId());
 		
 		applicationBuilder.generation(webConfig, projectsRoot + webConfig.getArtifactId());

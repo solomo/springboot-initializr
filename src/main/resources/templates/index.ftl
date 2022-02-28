@@ -58,6 +58,12 @@
       </div>
     </div>
     <div class="layui-form-item">
+      <label class="layui-form-label">自动执行sql</label>
+      <div class="layui-input-block">
+        <input type="checkbox" name="f_auto_execute_sql" id="f_auto_execute_sql" lay-skin="switch" lay-filter="f_auto_execute_sql" lay-text="是|否" value="1">
+      </div>
+    </div>
+    <div class="layui-form-item">
       <label class="layui-form-label">redis host</label>
       <div class="layui-input-block">
         <input type="text" name="redis_host" id="f_redis_host" autocomplete="off" class="layui-input" placeholder="127.0.0.1">
@@ -116,6 +122,7 @@
         'mysqlDatabase': $('#f_mysql_database').val(),
         'mysqlUsername': $('#f_mysql_username').val(),
         'mysqlPassword': $('#f_mysql_password').val(),
+        'autoExecuteSQL':$('#f_auto_execute_sql').get(0).checked ? 1 : 0,
         'redisHost': $('#f_redis_host').val(),
         'redisPort': $('#f_redis_port').val(),
         'reidsPassword': $('#f_redis_password').val(),
