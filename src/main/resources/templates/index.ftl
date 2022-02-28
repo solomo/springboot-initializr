@@ -6,94 +6,115 @@
   <link rel="stylesheet" href="/layui/css/layui.css?v=20210508">
   <script src="/js/jquery.min.js"></script>
   <script src="/layui/layui.js?v=20220124"></script>
+  <style>
+    .layui-form-label{
+      width: 120px;
+    }
+    .layui-input-block {
+      margin-left: 150px;
+      min-height: 36px;
+      padding-right: 30px;
+    }
+    body {
+      position: relative;
+      z-index: 1030;
+      background: #ecf2f2;
+    }
+    #main{
+      width: 800px;
+      margin-left: 800px;
+    }
+  </style>
 </head>
 <body>
-  <form class="layui-form" id="add_form" lay-filter="add_form" style="padding-top: 30px;padding-left: 50px;">
-    <div class="layui-form-item">
-      <label class="layui-form-label">Group</label>
-      <div class="layui-input-block">
-        <input type="text" name="groupId" id="f_group_id" autocomplete="off" class="layui-input" placeholder="com.example">
+  <div id="main">
+    <form class="layui-form" id="add_form" lay-filter="add_form" style="padding-top: 30px;padding-left: 50px;">
+      <div class="layui-form-item">
+        <label class="layui-form-label">Group</label>
+        <div class="layui-input-block">
+          <input type="text" name="groupId" id="f_group_id" autocomplete="off" class="layui-input" placeholder="com.example">
+        </div>
       </div>
-    </div>
-    <div class="layui-form-item">
-      <label class="layui-form-label">Artifact</label>
-      <div class="layui-input-block">
-        <input type="text" name="artifact" id="f_artifact" autocomplete="off" class="layui-input" placeholder="demo">
+      <div class="layui-form-item">
+        <label class="layui-form-label">Artifact</label>
+        <div class="layui-input-block">
+          <input type="text" name="artifact" id="f_artifact" autocomplete="off" class="layui-input" placeholder="demo">
+        </div>
       </div>
-    </div>
-    <div class="layui-form-item">
-      <label class="layui-form-label">Description</label>
-      <div class="layui-input-block">
-        <input type="text" name="description" id="f_description" autocomplete="off" class="layui-input" placeholder="description">
+      <div class="layui-form-item">
+        <label class="layui-form-label">Description</label>
+        <div class="layui-input-block">
+          <input type="text" name="description" id="f_description" autocomplete="off" class="layui-input" placeholder="description">
+        </div>
       </div>
-    </div>
-    <div class="layui-form-item">
-      <label class="layui-form-label">Mysql url</label>
-      <div class="layui-input-block">
-        <input type="text" name="mysql_url" id="f_mysql_url" autocomplete="off" class="layui-input" placeholder="127.0.0.1">
+      <div class="layui-form-item">
+        <label class="layui-form-label">Mysql url</label>
+        <div class="layui-input-block">
+          <input type="text" name="mysql_url" id="f_mysql_url" autocomplete="off" class="layui-input" placeholder="127.0.0.1">
+        </div>
       </div>
-    </div>
-    <div class="layui-form-item">
-      <label class="layui-form-label">Mysql port</label>
-      <div class="layui-input-block">
-        <input type="text" name="mysql_port" id="f_mysql_port" autocomplete="off" class="layui-input" placeholder="3306">
+      <div class="layui-form-item">
+        <label class="layui-form-label">Mysql port</label>
+        <div class="layui-input-block">
+          <input type="text" name="mysql_port" id="f_mysql_port" autocomplete="off" class="layui-input" placeholder="3306">
+        </div>
       </div>
-    </div>
-    <div class="layui-form-item">
-      <label class="layui-form-label">Mysql database</label>
-      <div class="layui-input-block">
-        <input type="text" name="mysql_database" id="f_mysql_database" autocomplete="off" class="layui-input" placeholder="database">
+      <div class="layui-form-item">
+        <label class="layui-form-label">Mysql database</label>
+        <div class="layui-input-block">
+          <input type="text" name="mysql_database" id="f_mysql_database" autocomplete="off" class="layui-input" placeholder="database">
+        </div>
       </div>
-    </div>
-    <div class="layui-form-item">
-      <label class="layui-form-label">Mysql username</label>
-      <div class="layui-input-block">
-        <input type="text" name="mysql_username" id="f_mysql_username" autocomplete="off" class="layui-input" placeholder="username">
+      <div class="layui-form-item">
+        <label class="layui-form-label">Mysql username</label>
+        <div class="layui-input-block">
+          <input type="text" name="mysql_username" id="f_mysql_username" autocomplete="off" class="layui-input" placeholder="username">
+        </div>
       </div>
-    </div>
-    <div class="layui-form-item">
-      <label class="layui-form-label">Mysql password</label>
-      <div class="layui-input-block">
-        <input type="text" name="mysql_password" id="f_mysql_password" autocomplete="off" class="layui-input" placeholder="password">
+      <div class="layui-form-item">
+        <label class="layui-form-label">Mysql password</label>
+        <div class="layui-input-block">
+          <input type="text" name="mysql_password" id="f_mysql_password" autocomplete="off" class="layui-input" placeholder="password">
+        </div>
       </div>
-    </div>
-    <div class="layui-form-item">
-      <label class="layui-form-label">自动执行sql</label>
-      <div class="layui-input-block">
-        <input type="checkbox" name="f_auto_execute_sql" id="f_auto_execute_sql" lay-skin="switch" lay-filter="f_auto_execute_sql" lay-text="是|否" value="1">
+      <div class="layui-form-item">
+        <label class="layui-form-label">Auto execute sql script</label>
+        <div class="layui-input-block">
+          <input type="checkbox" name="f_auto_execute_sql" id="f_auto_execute_sql" lay-skin="switch" lay-filter="f_auto_execute_sql" lay-text="是|否">
+        </div>
       </div>
-    </div>
-    <div class="layui-form-item">
-      <label class="layui-form-label">redis host</label>
-      <div class="layui-input-block">
-        <input type="text" name="redis_host" id="f_redis_host" autocomplete="off" class="layui-input" placeholder="127.0.0.1">
+      <div class="layui-form-item">
+        <label class="layui-form-label">Redis host</label>
+        <div class="layui-input-block">
+          <input type="text" name="redis_host" id="f_redis_host" autocomplete="off" class="layui-input" placeholder="127.0.0.1">
+        </div>
       </div>
-    </div>
-    <div class="layui-form-item">
-      <label class="layui-form-label">redis port</label>
-      <div class="layui-input-block">
-        <input type="text" name="redis_port" id="f_redis_port" autocomplete="off" class="layui-input" placeholder="6379">
+      <div class="layui-form-item">
+        <label class="layui-form-label">Redis port</label>
+        <div class="layui-input-block">
+          <input type="text" name="redis_port" id="f_redis_port" autocomplete="off" class="layui-input" placeholder="6379">
+        </div>
       </div>
-    </div>
-    <div class="layui-form-item">
-      <label class="layui-form-label">redis password</label>
-      <div class="layui-input-block">
-        <input type="text" name="redis_password" id="f_redis_password" autocomplete="off" class="layui-input" placeholder="">
+      <div class="layui-form-item">
+        <label class="layui-form-label">Redis password</label>
+        <div class="layui-input-block">
+          <input type="text" name="redis_password" id="f_redis_password" autocomplete="off" class="layui-input" placeholder="">
+        </div>
       </div>
-    </div>
-    <div class="layui-form-item">
-      <label class="layui-form-label">redis database</label>
-      <div class="layui-input-block">
-        <input type="text" name="redis_database" id="f_redis_database" autocomplete="off" class="layui-input" placeholder="1">
+      <div class="layui-form-item">
+        <label class="layui-form-label">Redis database</label>
+        <div class="layui-input-block">
+          <input type="text" name="redis_database" id="f_redis_database" autocomplete="off" class="layui-input" placeholder="1">
+        </div>
       </div>
-    </div>
-    <div class="layui-form-item">
-      <div class="layui-input-block">
-        <button class="layui-btn" lay-submit lay-filter="*">确定</button>
-        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+      <div class="layui-form-item">
+        <div class="layui-input-block">
+          <button class="layui-btn" lay-submit lay-filter="*">确定</button>
+          <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
       </div>
-    </div>
-  </form>
+    </form>
+  </div>
 </body>
 
 <script>
