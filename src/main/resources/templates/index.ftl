@@ -81,6 +81,7 @@
         <label class="layui-form-label">Auto execute sql script</label>
         <div class="layui-input-block">
           <input type="checkbox" name="f_auto_execute_sql" id="f_auto_execute_sql" lay-skin="switch" lay-filter="f_auto_execute_sql" lay-text="是|否">
+          <blockquote class="layui-elem-quote layui-quote-nm" id="notice"></blockquote>
         </div>
       </div>
       <div class="layui-form-item">
@@ -131,6 +132,11 @@
     layui.layer.close(index);
   };
   layui.use(['form', 'layer'], function () {
+    $('#f_artifact').on('blur', function (){
+      $('#notice').html("");
+      var html = '请注意，本选项选是会自动创建表，如不想创建，请确定数据库中必须包含：'+$('#f_artifact').val()+"_user、"+$('#f_artifact').val()+"_menu、"+$('#f_artifact').val()+"_role、"+$('#f_artifact').val()+"_role_menus、"+$('#f_artifact').val()+"_user_roles表";
+      $('#notice').html(html);
+    });
     var form = layui.form;
     form.on('submit(*)', function(){
       var i = showLoading("正在处理");
