@@ -128,7 +128,13 @@
         data: data,
         success: function(data) {
           hideLoading(i);
-          window.open($('#f_artifact').val()+".zip");
+          let a = document.createElement('a');
+          a.download = $('#f_artifact').val();
+          a.style.display = 'none';
+          a.href = $('#f_artifact').val()+".zip";
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
         },
         error: function () {
         }
