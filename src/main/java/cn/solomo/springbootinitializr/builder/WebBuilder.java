@@ -5,6 +5,7 @@ import cn.solomo.springbootinitializr.builder.impl.CommonBuilderImpl;
 import cn.solomo.springbootinitializr.builder.impl.ConfigBuilderImpl;
 import cn.solomo.springbootinitializr.builder.impl.ControllerBuilderImpl;
 import cn.solomo.springbootinitializr.builder.impl.LogbackBuilderImpl;
+import cn.solomo.springbootinitializr.builder.impl.PackageBuilder;
 import cn.solomo.springbootinitializr.builder.impl.PomBuilderImpl;
 import cn.solomo.springbootinitializr.builder.impl.PropertiesBuilderImpl;
 import cn.solomo.springbootinitializr.builder.impl.UserDetailBuilderImpl;
@@ -40,6 +41,8 @@ public class WebBuilder extends BaseBuilder{
 	private ApplicationBuilderImpl applicationBuilder;
 	@Autowired
 	private PomBuilderImpl pomBuilder;
+	@Autowired
+	private PackageBuilder packageBuilder;
 	
 	public void generation(PropertiesConfig config, String projectsRoot) throws Exception {
 		PropertiesConfig webConfig = new PropertiesConfig();
@@ -52,6 +55,7 @@ public class WebBuilder extends BaseBuilder{
 		webConfig.setDescription("web");
 		webConfig.setAutoExecuteSQL(config.isAutoExecuteSQL());
 		webConfig.setPackageName(webConfig.getGroupId() + "." + webConfig.getArtifactId());
+		webConfig.setSecurity(config.isSecurity());
 		
 		applicationBuilder.generation(webConfig, projectsRoot + webConfig.getArtifactId());
 		pomBuilder.generation(webConfig, projectsRoot + webConfig.getArtifactId(), "pom_web.ftl");
@@ -59,7 +63,10 @@ public class WebBuilder extends BaseBuilder{
 		logbackBuilder.generation(webConfig, projectsRoot + webConfig.getArtifactId());
 		commonBuilder.generation(webConfig, projectsRoot + webConfig.getArtifactId());
 		configBuilder.generation(webConfig, projectsRoot + webConfig.getArtifactId());
-		controllerBuilder.generation(webConfig, projectsRoot + webConfig.getArtifactId());
-		userDetailBuilder.generation(config, projectsRoot + webConfig.getArtifactId());
+		if(webConfig.isSecurity()) {
+			controllerBuilder.generation(webConfig, projectsRoot + webConfig.getArtifactId());
+			userDetailBuilder.generation(config, projectsRoot + webConfig.getArtifactId());
+		}
+		packageBuilder.generation(webConfig, projectsRoot + webConfig.getArtifactId());
 	}
 }

@@ -27,10 +27,12 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-data-jdbc</artifactId>
     </dependency>
+    <#if security>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-security</artifactId>
     </dependency>
+    </#if>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-configuration-processor</artifactId>
@@ -51,6 +53,7 @@
       <artifactId>redisson-spring-boot-starter</artifactId>
       <version>3.13.3</version>
     </dependency>
+    <#if security>
     <dependency>
       <groupId>io.jsonwebtoken</groupId>
       <artifactId>jjwt-api</artifactId>
@@ -68,6 +71,7 @@
       <version>0.10.7</version>
       <scope>runtime</scope>
     </dependency>
+    </#if>
     <dependency>
       <groupId>org.springframework.kafka</groupId>
       <artifactId>spring-kafka</artifactId>

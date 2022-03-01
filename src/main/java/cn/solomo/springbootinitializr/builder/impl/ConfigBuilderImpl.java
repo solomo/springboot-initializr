@@ -39,12 +39,13 @@ public class ConfigBuilderImpl extends BaseBuilder {
     File file = new File(projectsRoot + "/src/main/java/" + packagePath, "ControllerResponseBodyAdvice.java");
     // 写入文件
     super.writeFile(file, "controller_response_body_advice.ftl", info);
-    securityBuilder.generation(config, projectsRoot);
-    //web_security_config.ftl
-    file = new File(projectsRoot + "/src/main/java/" + packagePath, "WebSecurityConfig.java");
-    super.writeFile(file, "security/web_security_config.ftl", info);
-
-    jwtBuilder.generation(config, projectsRoot);
+		if(config.isSecurity()) {
+			securityBuilder.generation(config, projectsRoot);
+			//web_security_config.ftl
+			file = new File(projectsRoot + "/src/main/java/" + packagePath, "WebSecurityConfig.java");
+			super.writeFile(file, "security/web_security_config.ftl", info);
+			jwtBuilder.generation(config, projectsRoot);
+		}
     swaggerBuilder.generation(config, projectsRoot);
 
   }

@@ -56,4 +56,5 @@ public class PropertiesConfig implements Cloneable{
 	private String packageName;
 	private PropertiesConfig config;
 	private boolean autoExecuteSQL;
+	private boolean security;
 }

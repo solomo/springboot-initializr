@@ -68,6 +68,7 @@ public class IndexController {
 		propertiesConfig.setRedis(redis);
 		propertiesConfig.setPackageName(propertiesConfig.getGroupId() + "." + propertiesConfig.getArtifactId());
 		propertiesConfig.setAutoExecuteSQL(request.getParameter("autoExecuteSQL").equals("1"));
+		propertiesConfig.setSecurity(request.getParameter("security").equals("1"));
 		PomBuilderImpl pomBuilder = SpringContextUtil.getBean(PomBuilderImpl.class);
 		pomBuilder.generation(propertiesConfig, projectsRoot + propertiesConfig.getArtifactId(), "pom.ftl");
 		RepositoryBuilder repositoryBuilder = SpringContextUtil.getBean(RepositoryBuilder.class);

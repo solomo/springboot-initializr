@@ -85,6 +85,13 @@
         </div>
       </div>
       <div class="layui-form-item">
+        <label class="layui-form-label">With spring security</label>
+        <div class="layui-input-block">
+          <input type="checkbox" name="f_security" id="f_security" lay-skin="switch" lay-filter="f_security" lay-text="是|否" checked="">
+          <blockquote class="layui-elem-quote layui-quote-nm" id="notice">是否需要引入spring-securty和jwt支持</blockquote>
+        </div>
+      </div>
+      <div class="layui-form-item">
         <label class="layui-form-label">Redis host</label>
         <div class="layui-input-block">
           <input type="text" name="redis_host" id="f_redis_host" autocomplete="off" class="layui-input" value="127.0.0.1">
@@ -150,6 +157,7 @@
         'mysqlUsername': $('#f_mysql_username').val(),
         'mysqlPassword': $('#f_mysql_password').val(),
         'autoExecuteSQL':$('#f_auto_execute_sql').get(0).checked ? 1 : 0,
+        'security':$('#f_security').get(0).checked ? 1 : 0,
         'redisHost': $('#f_redis_host').val(),
         'redisPort': $('#f_redis_port').val(),
         'reidsPassword': $('#f_redis_password').val(),
