@@ -61,7 +61,7 @@ spring.mvc.converters.preferred-json-mapper=gson
 #logger
 logging.config=classpath:logback-spring.xml
 logging.file.path=./logs
-#mybatis??
+#mybatis
 mybatis-plus.mapper-locations=classpath*:mapper/*Mapper.xml
 mybatis-plus.configuration.log-impl=org.apache.ibatis.logging.stdout.StdOutImpl
 mybatis-plus.configuration.use-generated-keys=true
