@@ -1,6 +1,7 @@
 package ${packageName};
 
 import ${config.packageName}.common.Msg;
+import cn.hutool.json.JSONObject;
 import com.google.common.collect.Lists;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
@@ -33,7 +34,7 @@ public class ControllerResponseBodyAdvice implements ResponseBodyAdvice<Object> 
     if(o instanceof Msg){
       Msg msg = (Msg) o;
       if(msg.getData() == null){
-        msg.setData(Lists.newArrayList());
+        msg.setData(new JSONObject());
       }
       return msg;
     }
