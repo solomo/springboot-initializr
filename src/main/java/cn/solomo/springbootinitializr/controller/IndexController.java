@@ -19,6 +19,8 @@ import java.io.OutputStream;
 import java.io.Writer;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,6 +33,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @Version 1.0.0
  * @create 2022-02-25 17:28
  */
+@Slf4j
 @RequestMapping("/")
 @Controller
 public class IndexController {
@@ -76,6 +79,8 @@ public class IndexController {
 		WebBuilder webBuilder = SpringContextUtil.getBean(WebBuilder.class);
 		webBuilder.generation(propertiesConfig, projectsRoot);
 		ZipUtil.zip(projectsRoot + propertiesConfig.getArtifactId());
+		log.info(projectsRoot + propertiesConfig.getArtifactId());
+		FileUtils.deleteDirectory(f);
 		JSONObject rtn = new JSONObject();
 		rtn.putOpt("code", "ok");
 		return rtn;
