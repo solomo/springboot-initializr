@@ -6,7 +6,7 @@ import lombok.Data;
  * @author solom
  * @classname Msg.java
  * @create ${.now?string["yyyy-MM-dd HH:mm:ss"]}
- * @since: jdk 1.8
+ * @since: jdk 17
  */
 @Data
 public class Msg<T> {

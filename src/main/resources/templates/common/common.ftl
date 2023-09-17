@@ -23,7 +23,7 @@ import org.apache.commons.lang3.StringUtils;
  * @author solom
  * @classname Common.java
  * @create ${.now?string["yyyy-MM-dd HH:mm:ss"]}
- * @since: jdk 1.8
+ * @since: jdk 17
  */
 public final class Common {
 

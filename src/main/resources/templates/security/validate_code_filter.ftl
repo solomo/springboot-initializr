@@ -22,7 +22,7 @@ import ${config.packageName}.controller.ValidateController;
  * @Description 
  * @version: v1.0.0
  * @create ${.now?string["yyyy-MM-dd HH:mm:ss"]}
- * @since: jdk 1.8
+ * @since: jdk 17
  **/
 public class ValidateCodeFilter extends OncePerRequestFilter {
 

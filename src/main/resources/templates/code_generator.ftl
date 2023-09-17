@@ -22,7 +22,7 @@ import org.apache.commons.lang3.StringUtils;
  * @author: solom
  * @Version 1.0.0
  * @create ${.now?string["yyyy-MM-dd HH:mm:ss"]}
- * @since: jdk 1.8
+ * @since: jdk 17
  */
 public class CodeGenerator {
 

@@ -8,7 +8,7 @@ import org.modelmapper.spi.MappingContext;
  * @author solom
  * @classname FromOptionalConverter.java
  * @create ${.now?string["yyyy-MM-dd HH:mm:ss"]}
- * @since: jdk 1.8
+ * @since: jdk 17
  */
 public class FromOptionalConverter implements ConditionalConverter<Optional<Object>, Object> {
 

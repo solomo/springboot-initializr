@@ -7,7 +7,7 @@ import org.modelmapper.Module;
  * @author solom
  * @classname Jdk8Module.java
  * @create ${.now?string["yyyy-MM-dd HH:mm:ss"]}
- * @since: jdk 1.8
+ * @since: jdk 17
  */
 public class Jdk8Module implements Module {
 

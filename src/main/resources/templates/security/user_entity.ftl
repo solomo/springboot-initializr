@@ -11,7 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
  * @author solom
  * @classname UserEntity.java
  * @create ${.now?string["yyyy-MM-dd HH:mm:ss"]}
- * @since: jdk 1.8
+ * @since: jdk 17
  */
 @Data
 @AllArgsConstructor

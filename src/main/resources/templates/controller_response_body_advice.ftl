@@ -16,7 +16,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
  * @ClassName ControllerResponseBodyAdvice
  * @Description
  * @create ${.now?string["yyyy-MM-dd HH:mm:ss"]}
- * @since: jdk 1.8
+ * @since: jdk 17
  */
 @ControllerAdvice
 public class ControllerResponseBodyAdvice implements ResponseBodyAdvice<Object> {

@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
  * @Description
  * @Version 1.0.0
  * @create ${.now?string["yyyy-MM-dd HH:mm:ss"]}
- * @since: jdk 1.8
+ * @since: jdk 17
  */
 @Data
 @Configuration
