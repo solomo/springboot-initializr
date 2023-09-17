@@ -7,7 +7,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Random;
-import jakarta.imageio.ImageIO;
+import javax.imageio.ImageIO;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.social.connect.web.HttpSessionSessionStrategy;
