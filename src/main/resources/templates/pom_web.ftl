@@ -5,7 +5,7 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.6.3</version>
+    <version>3.1.3</version>
     <relativePath/> <!-- lookup parent from repository -->
   </parent>
   <groupId>${groupId}</groupId>
@@ -15,7 +15,7 @@
   <description>${description}</description>
 
   <properties>
-    <java.version>1.8</java.version>
+    <java.version>17</java.version>
     <jwt.version>0.10.7</jwt.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -85,8 +85,8 @@
       <artifactId>spring-retry</artifactId>
     </dependency>
     <dependency>
-      <groupId>javax.annotation</groupId>
-      <artifactId>javax.annotation-api</artifactId>
+      <groupId>jakarta.annotation</groupId>
+      <artifactId>jakarta.annotation-api</artifactId>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -128,13 +128,6 @@
           <mainClass>${groupId}.${artifactId}.${applicationJavaName}</mainClass>
           <jvmArguments>-Dfile.encoding=UTF-8</jvmArguments>
         </configuration>
-        <executions>
-          <execution>
-            <goals>
-              <goal>repackage</goal>
-            </goals>
-          </execution>
-        </executions>
       </plugin>
       <plugin>
         <groupId>org.springdoc</groupId>
@@ -156,7 +149,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-resources-plugin</artifactId>
-        <version>3.1.0</version>
+        <version>3.3.1</version>
       </plugin>
     </plugins>
     <resources>

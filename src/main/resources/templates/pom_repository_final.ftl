@@ -6,7 +6,7 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.6.3</version>
+    <version>3.1.3</version>
     <relativePath/> <!-- lookup parent from repository -->
   </parent>
   <groupId>${groupId}</groupId>
@@ -15,7 +15,7 @@
   <name>repository</name>
   <description>repository</description>
   <properties>
-    <java.version>1.8</java.version>
+    <java.version>17</java.version>
   </properties>
   <dependencies>
     <dependency>
@@ -28,8 +28,8 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>mysql</groupId>
-      <artifactId>mysql-connector-java</artifactId>
+      <groupId>com.mysql</groupId>
+      <artifactId>mysql-connector-j</artifactId>
       <scope>runtime</scope>
     </dependency>
     <dependency>

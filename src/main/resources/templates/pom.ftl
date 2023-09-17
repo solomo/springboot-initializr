@@ -6,7 +6,7 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.6.3</version>
+    <version>3.1.3</version>
     <relativePath/> <!-- lookup parent from repository -->
   </parent>
   <groupId>${groupId}</groupId>
@@ -16,7 +16,7 @@
   <description>${description}</description>
   <packaging>pom</packaging>
   <properties>
-    <java.version>1.8</java.version>
+    <java.version>17</java.version>
     <jwt.version>0.10.7</jwt.version>
   </properties>
   <repositories>
