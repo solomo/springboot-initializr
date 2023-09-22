@@ -45,10 +45,10 @@ spring.web.resources.chain.strategy.fixed.enabled=true
 spring.web.resources.chain.strategy.fixed.paths=/js/**,/v1.0.0/**
 spring.web.resources.chain.strategy.fixed.version=v1.0.0
 #redis
-spring.redis.host=${redis.host}
-spring.redis.password=${redis.password}
-spring.redis.port=${redis.port}
-spring.redis.database=${redis.database}
+spring.data.redis.host=${redis.host}
+spring.data.redis.password=${redis.password}
+spring.data.redis.port=${redis.port}
+spring.data.redis.database=${redis.database}
 #spring
 server.port=8080
 server.servlet.context-path=/

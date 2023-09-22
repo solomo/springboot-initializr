@@ -62,9 +62,9 @@ public class RedisConfig {
   @Bean(name = "redisConnectionFactory")
   @ConditionalOnMissingBean(name = "redisConnectionFactory")
   public RedisConnectionFactory redisConnectionFactory(
-    @Value("${r'${spring.redis.host}'}") String hostName, @Value("${r'${spring.redis.port}'}") int port,
-    @Value("${r'${spring.redis.password}'}") String password,
-    @Value("${r'${spring.redis.database}'}") int index) {
+    @Value("${r'${spring.data.redis.host}'}") String hostName, @Value("${r'${spring.data.redis.port}'}") int port,
+    @Value("${r'${spring.data.redis.password}'}") String password,
+    @Value("${r'${spring.data.redis.database}'}") int index) {
     return connectionFactory(hostName, port, password, index);
   }
 

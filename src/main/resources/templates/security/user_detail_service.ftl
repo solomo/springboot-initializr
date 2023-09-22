@@ -30,7 +30,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
   @Override
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-    ${userEntity} user = userService.lambdaQuery().eq(DemoUser::getLoginName, username).one();
+    ${userEntity} user = userService.lambdaQuery().eq(${userEntity}::getLoginName, username).one();
     if (user != null) {
       //根据用户id获取用户角色
 			${userRoleEntity} userRole = userRolesService.lambdaQuery().eq(${userRoleEntity}::getUserId, user.getId()).one();

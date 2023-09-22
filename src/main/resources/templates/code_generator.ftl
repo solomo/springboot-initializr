@@ -1,29 +1,23 @@
 package ${packageName};
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.core.exceptions.MybatisPlusException;
-import com.baomidou.mybatisplus.core.toolkit.StringPool;
-import com.baomidou.mybatisplus.generator.AutoGenerator;
-import com.baomidou.mybatisplus.generator.InjectionConfig;
-import com.baomidou.mybatisplus.generator.config.DataSourceConfig;
-import com.baomidou.mybatisplus.generator.config.FileOutConfig;
-import com.baomidou.mybatisplus.generator.config.GlobalConfig;
-import com.baomidou.mybatisplus.generator.config.PackageConfig;
-import com.baomidou.mybatisplus.generator.config.StrategyConfig;
-import com.baomidou.mybatisplus.generator.config.TemplateConfig;
-import com.baomidou.mybatisplus.generator.config.po.TableInfo;
+import com.baomidou.mybatisplus.generator.FastAutoGenerator;
+import com.baomidou.mybatisplus.generator.config.OutputFile;
+import com.baomidou.mybatisplus.generator.config.TemplateType;
+import com.baomidou.mybatisplus.generator.config.rules.DateType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collections;
 import java.util.Scanner;
 import org.apache.commons.lang3.StringUtils;
 
 /**
- * @author: solom
- * @Version 1.0.0
- * @create ${.now?string["yyyy-MM-dd HH:mm:ss"]}
- * @since: jdk 17
- */
+* @author: solom
+* @Version 1.0.0
+* @create ${.now?string["yyyy-MM-dd HH:mm:ss"]}
+* @since: jdk 1.8
+*/
 public class CodeGenerator {
 
   /**
@@ -46,78 +40,61 @@ public class CodeGenerator {
   }
 
   public static void main(String[] args) {
-    // 代码生成器
-    AutoGenerator mpg = new AutoGenerator();
-
-    // 全局配置
-    GlobalConfig gc = new GlobalConfig();
     String projectPath = System.getProperty("user.dir");
-    gc.setOutputDir(projectPath + "/src/main/java");
-    gc.setAuthor("solom");
-    gc.setOpen(false);
-    gc.setBaseResultMap(true);// XML ResultMap
-    gc.setFileOverride(true); //覆盖文件
-    gc.setSwagger2(true);
-    mpg.setGlobalConfig(gc);
-
-    // 数据源配置
-    DataSourceConfig dsc = new DataSourceConfig();
-    dsc.setUrl("${datasource.mysql.url}");
-    dsc.setDriverName("com.mysql.cj.jdbc.Driver");
-    dsc.setUsername("${datasource.mysql.username}");
-    dsc.setPassword("${datasource.mysql.password}");
-
-    mpg.setDataSource(dsc);
-
-    // 包配置
-    PackageConfig pc = new PackageConfig();
-    pc.setModuleName("");
-    pc.setParent("${packageName}");
-    mpg.setPackageInfo(pc);
-
-    // 自定义配置
-    InjectionConfig cfg = new InjectionConfig() {
-      @Override
-      public void initMap() {
-        // to do nothing
-      }
-    };
-
-    // 如果模板引擎是 freemarker
-    String templatePath = "/templates/mapper.xml.ftl";
-    // 自定义输出配置
-    List<FileOutConfig> focList = new ArrayList<>();
-    // 自定义配置会被优先输出
-    focList.add(new FileOutConfig(templatePath) {
-      @Override
-      public String outputFile(TableInfo tableInfo) {
-        // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
-        return projectPath + "/src/main/resources/mapper/" + pc.getModuleName()
-            + "/" + tableInfo.getEntityName() + "Mapper" + StringPool.DOT_XML;
-      }
-    });
-    cfg.setFileOutConfigList(focList);
-    mpg.setCfg(cfg);
-
-    // 配置模板
-    TemplateConfig templateConfig = new TemplateConfig();
-    templateConfig.setXml(null);
-    templateConfig.setEntity("entity.java");
-    templateConfig.setController(""); //不生成controller
-    mpg.setTemplate(templateConfig);
-
-    // 策略配置
-    StrategyConfig strategy = new StrategyConfig();
-    strategy.setNaming(NamingStrategy.underline_to_camel);
-    strategy.setColumnNaming(NamingStrategy.underline_to_camel);
-    strategy.setSuperEntityClass("${packageName}.entity.convert.Convert");
-    strategy.setEntityLombokModel(true);
-    strategy.setRestControllerStyle(false);
-    //strategy.setInclude(scanner("表名，多个英文逗号分割").split(","));
-    strategy.setControllerMappingHyphenStyle(true);
-    strategy.setTablePrefix(pc.getModuleName() + "_");
-    mpg.setStrategy(strategy);
-    mpg.setTemplateEngine(new FreemarkerTemplateEngine());
-    mpg.execute();
+    FastAutoGenerator.create(
+            "${datasource.mysql.url}",
+            "${datasource.mysql.username}", "${datasource.mysql.password}")
+        .templateConfig(builder -> {
+          builder.disable(TemplateType.CONTROLLER);
+          builder.entity("entity.java");
+        })
+        .globalConfig(builder -> {
+          builder.author("solom")        // 设置作者
+              .enableSwagger()        // 开启 swagger 模式 默认值:false
+              .enableSpringdoc()
+              .disableOpenDir()
+              .dateType(
+                  DateType.TIME_PACK)   //定义生成的实体类中日期类型 DateType.ONLY_DATE 默认值: DateType.TIME_PACK
+              .outputDir(projectPath + "/src/main/java"); // 指定输出目录
+        })
+        .packageConfig(builder -> {
+          builder.parent("${packageName}") // 父包模块名
+              .entity("entity")           //Entity 包名 默认值:entity
+              .service("service")         //Service 包名 默认值:service
+              .mapper("mapper")           //Mapper 包名 默认值:mapper
+              .pathInfo(Collections.singletonMap(OutputFile.xml,
+                  projectPath + "/src/main/resources/mapper")); // 设置mapperXml生成路径
+          //默认存放在mapper的xml下
+        })
+        .strategyConfig(builder -> {
+          builder.addInclude(
+                  scanner("表名，多个英文逗号分割").split(",")) // 设置需要生成的表名 可边长参数“user”, “user1”
+              .serviceBuilder()//service策略配置
+              .enableFileOverride()
+              .formatServiceFileName("I%sService")
+              .formatServiceImplFileName("%sServiceImpl")
+              .entityBuilder()// 实体类策略配置
+              .idType(IdType.AUTO)//主键策略  雪花算法自动生成的id
+              .enableFileOverride()
+              .enableLombok() //开启lombok
+              .enableTableFieldAnnotation()// 属性加上注解说明
+              .naming(NamingStrategy.underline_to_camel)
+              .columnNaming(NamingStrategy.underline_to_camel)
+              .superClass("${packageName}.entity.convert.Convert")
+              .controllerBuilder() //controller 策略配置
+              .enableFileOverride()
+              .formatFileName("%sController")
+              .mapperBuilder()// mapper策略配置
+              .enableFileOverride()
+              .enableBaseResultMap()
+              .enableBaseColumnList()
+              .formatMapperFileName("%sMapper")
+              .enableMapperAnnotation()//@mapper注解开启
+              .formatXmlFileName("%sMapper");
+        })
+        // 使用Freemarker引擎模板，默认的是Velocity引擎模板
+        //.templateEngine(new FreemarkerTemplateEngine())
+        .templateEngine(new FreemarkerTemplateEngine())
+        .execute();
   }
 }
