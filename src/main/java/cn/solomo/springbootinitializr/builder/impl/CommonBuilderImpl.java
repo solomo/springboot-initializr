@@ -29,7 +29,5 @@ public class CommonBuilderImpl extends BaseBuilder {
     // 写入文件
     super.writeFile(file, "common/msg.ftl", info);
     file = new File(projectsRoot + "/src/main/java/" + packagePath, "ImageCode.java");
-    // 写入文件
-    super.writeFile(file, "common/image_code.ftl", info);
   }
 }

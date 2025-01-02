@@ -3,7 +3,6 @@ package cn.solomo.springbootinitializr.builder.impl;
 import cn.solomo.springbootinitializr.builder.BaseBuilder;
 import cn.solomo.springbootinitializr.configure.PropertiesConfig;
 import java.io.File;
-import java.util.Arrays;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -67,12 +66,5 @@ public class CodeGeneratorBuilderImpl extends BaseBuilder {
     packagePath = config.getPackageName().replace(".", "/") + "/modelmapper/jsr310/";
     file = new File(projectsRoot + "/src/main/java/" + packagePath, "ToTemporalConverter.java");
     super.writeFile(file, "code/modelmapper/jsr310/to_temporal_converter.ftl", config);
-    String command = "cmd /c mvn spring-boot:run";
-    String os = System.getProperty("os.name");
-    if(!os.toLowerCase().startsWith("win")) {
-      command = "sh -c mvn spring-boot:run";
-    }
-    Process p = Runtime.getRuntime().exec(command, null , new File(projectsRoot));
-    log.info("command:{}, {}", command, p);
   }
 }

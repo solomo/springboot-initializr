@@ -21,17 +21,12 @@ public class ConfigBuilderImpl extends BaseBuilder {
   @Autowired
   private RedisConfigBuilderImpl redisConfigBuilder;
   @Autowired
-  private CacheBuilderImpl cacheBuilder;
-  @Autowired
   private JwtBuilderImpl jwtBuilder;
-  @Autowired
-  private SecurityBuilderImpl securityBuilder;
   @Autowired
   private SwaggerBuilderImpl swaggerBuilder;
 
   public void generation(PropertiesConfig config, String projectsRoot) throws Exception {
     redisConfigBuilder.generation(config, projectsRoot);
-    cacheBuilder.generation(config, projectsRoot);
     ApplicationInfo info = new ApplicationInfo();
     info.setPackageName(config.getPackageName()+".config");
     info.setConfig(config);
@@ -39,13 +34,6 @@ public class ConfigBuilderImpl extends BaseBuilder {
     File file = new File(projectsRoot + "/src/main/java/" + packagePath, "ControllerResponseBodyAdvice.java");
     // 写入文件
     super.writeFile(file, "controller_response_body_advice.ftl", info);
-		if(config.isSecurity()) {
-			securityBuilder.generation(config, projectsRoot);
-			//web_security_config.ftl
-			file = new File(projectsRoot + "/src/main/java/" + packagePath, "WebSecurityConfig.java");
-			super.writeFile(file, "security/web_security_config.ftl", info);
-			jwtBuilder.generation(config, projectsRoot);
-		}
     swaggerBuilder.generation(config, projectsRoot);
 
   }

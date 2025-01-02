@@ -8,7 +8,6 @@ import cn.solomo.springbootinitializr.builder.impl.LogbackBuilderImpl;
 import cn.solomo.springbootinitializr.builder.impl.PackageBuilder;
 import cn.solomo.springbootinitializr.builder.impl.PomBuilderImpl;
 import cn.solomo.springbootinitializr.builder.impl.PropertiesBuilderImpl;
-import cn.solomo.springbootinitializr.builder.impl.UserDetailBuilderImpl;
 import cn.solomo.springbootinitializr.configure.PropertiesConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,8 +33,6 @@ public class WebBuilder extends BaseBuilder{
 	@Autowired
 	private ControllerBuilderImpl controllerBuilder;
 	@Autowired
-	private UserDetailBuilderImpl userDetailBuilder;
-	@Autowired
 	private PropertiesBuilderImpl propertiesBuilder;
 	@Autowired
 	private ApplicationBuilderImpl applicationBuilder;
@@ -55,18 +52,13 @@ public class WebBuilder extends BaseBuilder{
 		webConfig.setDescription("web");
 		webConfig.setAutoExecuteSQL(config.isAutoExecuteSQL());
 		webConfig.setPackageName(webConfig.getGroupId() + "." + webConfig.getArtifactId());
-		webConfig.setSecurity(config.isSecurity());
-		
+
 		applicationBuilder.generation(webConfig, projectsRoot + webConfig.getArtifactId());
 		pomBuilder.generation(webConfig, projectsRoot + webConfig.getArtifactId(), "pom_web.ftl");
 		propertiesBuilder.generation(webConfig, projectsRoot + webConfig.getArtifactId());
 		logbackBuilder.generation(webConfig, projectsRoot + webConfig.getArtifactId());
 		commonBuilder.generation(webConfig, projectsRoot + webConfig.getArtifactId());
 		configBuilder.generation(webConfig, projectsRoot + webConfig.getArtifactId());
-		if(webConfig.isSecurity()) {
-			controllerBuilder.generation(webConfig, projectsRoot + webConfig.getArtifactId());
-			userDetailBuilder.generation(config, projectsRoot + webConfig.getArtifactId());
-		}
 		packageBuilder.generation(webConfig, projectsRoot + webConfig.getArtifactId());
 	}
 }

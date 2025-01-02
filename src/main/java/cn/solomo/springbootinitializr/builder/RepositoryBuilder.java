@@ -2,13 +2,10 @@ package cn.solomo.springbootinitializr.builder;
 
 import cn.solomo.springbootinitializr.builder.impl.CodeGeneratorBuilderImpl;
 import cn.solomo.springbootinitializr.builder.impl.PomBuilderImpl;
-import cn.solomo.springbootinitializr.builder.impl.SqlBuilderImpl;
 import cn.solomo.springbootinitializr.configure.PropertiesConfig;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,8 +26,6 @@ public class RepositoryBuilder extends BaseBuilder{
 	@Autowired
 	private PomBuilderImpl pomBuilder;
 	@Autowired
-	private SqlBuilderImpl sqlBuilder;
-	@Autowired
 	private CodeGeneratorBuilderImpl codeGeneratorBuilder;
 	@Autowired
 	FreeMarkerConfigurer freeMarkerConfigurer;
@@ -47,8 +42,8 @@ public class RepositoryBuilder extends BaseBuilder{
 		repositoryConfig.setDescription("repository");
 		repositoryConfig.setConfig(config);
 		pomBuilder.generation(repositoryConfig, projectsRoot + repositoryConfig.getArtifactId(), "pom_repository.ftl");
-		sqlBuilder.generation(config, projectsRoot + repositoryConfig.getArtifactId());
 		File f = new File(projectsRoot + repositoryConfig.getArtifactId() + "/src/main/resources/entity.java.ftl");
+		f.getParentFile().mkdirs();
 		Path copied = f.toPath();
 		ClassPathResource cpr = new ClassPathResource("/templates/swagger/entity.java.ftl");
 		Files.copy(cpr.getInputStream(), copied, StandardCopyOption.REPLACE_EXISTING);

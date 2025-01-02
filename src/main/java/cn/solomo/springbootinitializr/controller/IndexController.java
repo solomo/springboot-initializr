@@ -1,8 +1,6 @@
 package cn.solomo.springbootinitializr.controller;
 
 import cn.hutool.core.util.ZipUtil;
-import cn.hutool.json.JSON;
-import cn.hutool.json.JSONException;
 import cn.hutool.json.JSONObject;
 import cn.solomo.springbootinitializr.builder.RepositoryBuilder;
 import cn.solomo.springbootinitializr.builder.WebBuilder;
@@ -12,13 +10,9 @@ import cn.solomo.springbootinitializr.configure.PropertiesConfig.Datasource;
 import cn.solomo.springbootinitializr.configure.PropertiesConfig.Mysql;
 import cn.solomo.springbootinitializr.configure.PropertiesConfig.Redis;
 import cn.solomo.springbootinitializr.service.SpringContextUtil;
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.OutputStream;
-import java.io.Writer;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.File;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.stereotype.Controller;
@@ -71,7 +65,6 @@ public class IndexController {
 		propertiesConfig.setRedis(redis);
 		propertiesConfig.setPackageName(propertiesConfig.getGroupId() + "." + propertiesConfig.getArtifactId());
 		propertiesConfig.setAutoExecuteSQL(request.getParameter("autoExecuteSQL").equals("1"));
-		propertiesConfig.setSecurity(request.getParameter("security").equals("1"));
 		PomBuilderImpl pomBuilder = SpringContextUtil.getBean(PomBuilderImpl.class);
 		pomBuilder.generation(propertiesConfig, projectsRoot + propertiesConfig.getArtifactId(), "pom.ftl");
 		RepositoryBuilder repositoryBuilder = SpringContextUtil.getBean(RepositoryBuilder.class);

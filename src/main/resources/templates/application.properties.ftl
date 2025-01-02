@@ -65,8 +65,7 @@ logging.file.path=./logs
 mybatis-plus.mapper-locations=classpath*:mapper/*Mapper.xml
 mybatis-plus.configuration.log-impl=org.apache.ibatis.logging.stdout.StdOutImpl
 mybatis-plus.configuration.use-generated-keys=true
-#security
-spring.security.basic.enabled=true
+
 spring.cache.type=REDIS
 spring.redis.lettuce.pool.max-total=8
 spring.redis.lettuce.pool.max-idle=8
