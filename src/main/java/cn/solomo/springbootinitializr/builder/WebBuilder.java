@@ -51,7 +51,7 @@ public class WebBuilder extends BaseBuilder{
 		webConfig.setArtifactId("web");
 		webConfig.setDescription("web");
 		webConfig.setAutoExecuteSQL(config.isAutoExecuteSQL());
-		webConfig.setPackageName(webConfig.getGroupId() + "." + webConfig.getArtifactId());
+		webConfig.setPackageName((webConfig.getGroupId() + "." + webConfig.getArtifactId()).replace("-", "_"));
 
 		applicationBuilder.generation(webConfig, projectsRoot + webConfig.getArtifactId());
 		pomBuilder.generation(webConfig, projectsRoot + webConfig.getArtifactId(), "pom_web.ftl");

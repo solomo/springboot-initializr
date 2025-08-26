@@ -6,7 +6,7 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>3.4.1</version>
+    <version>3.5.5</version>
     <relativePath/> <!-- lookup parent from repository -->
   </parent>
   <groupId>cn.solomo</groupId>
@@ -52,12 +52,12 @@
     <dependency>
       <groupId>com.baomidou</groupId>
       <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
-      <version>3.5.9</version>
+      <version>3.5.12</version>
     </dependency>
     <dependency>
       <groupId>com.baomidou</groupId>
       <artifactId>mybatis-plus-generator</artifactId>
-      <version>3.5.9</version>
+      <version>3.5.12</version>
     </dependency>
     <dependency>
       <groupId>com.baomidou</groupId>
@@ -67,12 +67,12 @@
     <dependency>
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
-      <version>33.4.0-jre</version>
+      <version>33.4.8-jre</version>
     </dependency>
     <dependency>
       <groupId>cn.hutool</groupId>
       <artifactId>hutool-all</artifactId>
-      <version>5.8.35</version>
+      <version>5.8.39</version>
     </dependency>
   </dependencies>
 

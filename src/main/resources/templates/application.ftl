@@ -23,8 +23,9 @@ import org.springframework.web.filter.CorsFilter;
 @EnableScheduling
 @EnableCaching
 @EnableRetry
-@MapperScan("${groupId}.repository.mapper")
-@ComponentScan(value = {"${groupId}.repository", "${groupId}.web"})
+<#assign tmpGroupId = groupId?replace("-", "_", "r")>
+@MapperScan("${tmpGroupId}.repository.mapper")
+@ComponentScan(value = {"${tmpGroupId}.repository", "${tmpGroupId}.web"})
 public class WebApplication {
 
   public static void main(String[] args) {

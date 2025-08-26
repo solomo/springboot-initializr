@@ -35,7 +35,7 @@ public class RepositoryBuilder extends BaseBuilder{
 		PropertiesConfig repositoryConfig = new PropertiesConfig();
 		repositoryConfig.setDatasource(config.getDatasource());
 		repositoryConfig.setRedis(config.getRedis());
-		repositoryConfig.setPackageName(config.getGroupId() + "." + config.getArtifactId() + ".repository");
+		repositoryConfig.setPackageName((config.getGroupId() + "." + config.getArtifactId() + ".repository").replace("-", "_"));
 		projectsRoot = projectsRoot + config.getArtifactId() + "/";
 		repositoryConfig.setGroupId(config.getGroupId() + "." + config.getArtifactId());
 		repositoryConfig.setArtifactId("repository");

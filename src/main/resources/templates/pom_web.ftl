@@ -6,7 +6,7 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>3.4.1</version>
+    <version>3.5.5</version>
     <relativePath/> <!-- lookup parent from repository -->
   </parent>
   <groupId>${groupId}</groupId>
@@ -45,12 +45,12 @@
     <dependency>
       <groupId>com.baomidou</groupId>
       <artifactId>dynamic-datasource-spring-boot3-starter</artifactId>
-      <version>4.1.3</version>
+      <version>4.3.1</version>
     </dependency>
     <dependency>
       <groupId>org.redisson</groupId>
       <artifactId>redisson-spring-boot-starter</artifactId>
-      <version>3.41.0</version>
+      <version>3.51.0</version>
     </dependency>
     <dependency>
       <groupId>org.springframework.kafka</groupId>
@@ -75,12 +75,12 @@
     <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-pool2</artifactId>
-      <version>2.12.0</version>
+      <version>2.12.1</version>
     </dependency>
     <dependency>
       <groupId>io.lettuce</groupId>
       <artifactId>lettuce-core</artifactId>
-      <version>6.5.2.RELEASE</version>
+      <version>6.8.0.RELEASE</version>
     </dependency>
     <dependency>
       <groupId>junit</groupId>

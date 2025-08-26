@@ -56,7 +56,7 @@ server.compression.enabled=true
 server.compression.mime-types=application/json,application/xml,text/html,text/xml,text/plain
 server.compression.min-response-size=2048
 spring.mvc.pathmatch.matching-strategy=ant_path_matcher
-spring.mvc.converters.preferred-json-mapper=gson
+spring.http.converters.preferred-json-mapper=gson
 
 #logger
 logging.config=classpath:logback-spring.xml
