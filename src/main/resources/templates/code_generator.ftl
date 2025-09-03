@@ -81,7 +81,7 @@ public class CodeGenerator {
               .naming(NamingStrategy.underline_to_camel)
               .columnNaming(NamingStrategy.underline_to_camel)
               .superClass("${packageName}.entity.convert.Convert")
-              .controllerBuilder() //controller 策略配置
+              .controllerBuilder().disable() //controller 策略配置
               .enableFileOverride()
               .formatFileName("%sController")
               .mapperBuilder()// mapper策略配置
