@@ -111,7 +111,7 @@
         <artifactId>spring-boot-maven-plugin</artifactId>
         <configuration>
           <!-- 工程主入口-->
-          <mainClass>${groupId}.${artifactId}.${applicationJavaName}</mainClass>
+          <mainClass>${groupId?replace("-", "_")}.${artifactId?replace("-", "_")}.${applicationJavaName}</mainClass>
           <jvmArguments>-Dfile.encoding=UTF-8</jvmArguments>
         </configuration>
       </plugin>
