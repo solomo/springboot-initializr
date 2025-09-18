@@ -37,5 +37,5 @@
     <module>repository</module>
     <module>web</module>
   </modules>
-
+<#--init by https://github.com/solomo/springboot-initializr project-->
 </project>
